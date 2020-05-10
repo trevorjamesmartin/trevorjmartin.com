@@ -1,2 +1,0 @@
-# trevorjmartin.com
-web presence
