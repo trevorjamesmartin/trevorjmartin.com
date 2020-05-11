@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import GlobalStyle from "./GlobalStyle";
 import Navbar from "./components/navbar";
+import Hero from "./components/hero";
 import logo from "./logo.svg";
 
 import "./App.css";
@@ -10,10 +12,15 @@ const Placeholder = (props) => {
 };
 
 function App() {
+  const [state, setState] = useState({
+    navBarOpen: false,
+  });
+  const handleNavbar = () => setState({ navBarOpen: !state.navBarOpen });
   return (
     <div className="App">
       <header>
-        <Navbar />
+        <Navbar navbarState={state.navbarOpen} handleNavbar={handleNavbar} />
+        <Hero text="test" />
       </header>
       <body>
         <Route
@@ -30,6 +37,7 @@ function App() {
       <footer>
         <Navbar />
       </footer>
+      <GlobalStyle />
     </div>
   );
 }
