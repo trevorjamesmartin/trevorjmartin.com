@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import GlobalStyle from "./GlobalStyle";
 import Navbar from "./components/navbar";
 import Hero from "./components/hero";
-import logo from "./logo.svg";
 
 import "./App.css";
 import { Route } from "react-router-dom";
@@ -15,12 +14,17 @@ function App() {
   const [state, setState] = useState({
     navBarOpen: false,
   });
-  const handleNavbar = () => setState({ navBarOpen: !state.navBarOpen });
+  const handleNavbar = (e) => {
+    // e.preventDefault();
+    const target = e.currentTarget;
+    setState({ navBarOpen: !state.navBarOpen });
+    console.log(target, state.navBarOpen);
+  };
   return (
     <div className="App">
       <header>
         <Navbar navbarState={state.navbarOpen} handleNavbar={handleNavbar} />
-        <Hero text="test" />
+        <Hero text=":)" />
       </header>
       <body>
         <Route
@@ -34,9 +38,6 @@ function App() {
         />
         <Route path="/about" component={() => Placeholder({ text: "about" })} />
       </body>
-      <footer>
-        <Navbar />
-      </footer>
       <GlobalStyle />
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSpring } from "react-spring";
+// import { StyledLink } from "../navbar/navbar-style";
 import { CollapseWrapper, NavLinks } from "./burger-style";
 const CollapseMenu = (props) => {
   const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
@@ -19,22 +20,17 @@ const CollapseMenu = (props) => {
         <NavLinks>
           <li>
             <a href="/" onClick={props.handleNavbar}>
-              link n1
+              Home
             </a>
           </li>
           <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n2
+            <a href="/projects" onClick={props.handleNavbar}>
+              Projects
             </a>
           </li>
           <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n3
-            </a>
-          </li>
-          <li>
-            <a href="/" onClick={props.handleNavbar}>
-              link n4
+            <a href="/about" onClick={props.handleNavbar}>
+              About
             </a>
           </li>
         </NavLinks>
