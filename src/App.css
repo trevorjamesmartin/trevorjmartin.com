@@ -1,38 +1,48 @@
 .App {
   text-align: center;
+  box-sizing: inherit;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.menu-button--full {
+  top: 40px;
+  left: 20px;
+}
+.menu-button {
+  z-index: 40;
+  border: none;
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  padding: 12px;
+  font-size: 1em;
+  background: none;
+  background: #fff;
+  color: #692969;
+  transition: background 0.1s linear;
+  cursor: pointer;
+}
+.menu-button-active {
+  opacity: 0.2;
+}
+.menu-button-hidden {
+  display: none;
+}
+.menu-button:hover,
+.menu-button:focus {
+  background: #f9c49a;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.show-modal-button {
+  padding: 16px;
+  background-color: #7c3c21;
+  color: #e8e4e1;
+  font-size: 1em;
+  border: none;
+  margin-top: 16px;
+  align-self: center;
+  cursor: pointer;
+  position: fixed;
+  top: calc(50%);
+  left: calc(50% - 100px);
+  width: 200px;
 }

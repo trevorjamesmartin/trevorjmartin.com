@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0px;
     padding: 0px;
     box-sizing: inherit;
+    overflow-x: hidden;    
   }
 
   html {
