@@ -1,8 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { animated } from "react-spring";
+import {
+  faReact,
+  faJs,
+  faPython,
+  faHtml5,
+  faLinux,
+} from "@fortawesome/free-brands-svg-icons";
+import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import "./menu.css";
 
 export const MenuRight = ({ style }) => (
@@ -15,10 +22,18 @@ export const MenuRight = ({ style }) => (
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--right">
-          <NavLink to="/Projects">Projects</NavLink>
+          <NavLink to="/Projects">
+            <FontAwesomeIcon icon={faLinux} alt="Projects" />
+            <FontAwesomeIcon icon={faPython} alt="Projects" />
+            <FontAwesomeIcon icon={faReact} alt="Projects" />
+            <FontAwesomeIcon icon={faJs} alt="Projects" />
+            <FontAwesomeIcon icon={faHtml5} alt="Projects" />
+          </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--right">
-          <NavLink to="/About">About</NavLink>
+          <NavLink to="/About">
+            <FontAwesomeIcon icon={faAddressCard} alt="About" />
+          </NavLink>
         </li>
       </ul>
     </nav>
@@ -35,12 +50,16 @@ export const MenuFull = ({ style, handleClick }) => (
         </li>
         <li className="menu-list-item menu-list-item--full">
           <NavLink to="/Projects" onClick={handleClick}>
-            Projects
+            <FontAwesomeIcon icon={faLinux} alt="Projects" />
+            <FontAwesomeIcon icon={faPython} alt="Projects" />
+            <FontAwesomeIcon icon={faReact} alt="Projects" />
+            <FontAwesomeIcon icon={faJs} alt="Projects" />
+            <FontAwesomeIcon icon={faHtml5} alt="Projects" />
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--full">
           <NavLink to="/About" onClick={handleClick}>
-            About
+            <FontAwesomeIcon icon={faAddressCard} alt="About" />
           </NavLink>
         </li>
       </ul>
