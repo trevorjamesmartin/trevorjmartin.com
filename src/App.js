@@ -4,7 +4,9 @@ import { useSpring } from "react-spring";
 import { MenuRight, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
 // import { free-brands-svg-icons } from "@fortawesome/fontawesome-free";
-import Contact from "./components/Contact";
+import About from "./components/About";
+import Home from "./components/Home";
+import Projects from "./components/Projects";
 // import { fab } from "@fortawesome/fontawesome-free"; //  all of the brand icons
 import {
   faHome,
@@ -24,9 +26,9 @@ library.add(
   faArrowCircleRight
 );
 
-const Placeholder = (props) => {
-  return <h1>{props.text}</h1>;
-};
+// const Placeholder = (props) => {
+//   return <h1>{props.text}</h1>;
+// };
 
 export default function App() {
   const [rightMenuVisible, setRightMenuvisible] = useState(false);
@@ -71,16 +73,9 @@ export default function App() {
         style={fullMenuAnimation}
         handleClick={() => setFullMenuVisible(!fullMenuVisible)}
       />
-      <Route
-        exact
-        path="/"
-        component={() => Placeholder({ text: "coming soon" })}
-      />
-      <Route path="/about" component={() => <Contact text="contact" />} />
-      <Route
-        path="/projects"
-        component={() => Placeholder({ text: "projects" })}
-      />
+      <Route exact path="/" component={() => <Home text="Home" />} />
+      <Route path="/about" component={() => <About text="About" />} />
+      <Route path="/projects" component={() => <Projects text="Projects" />} />
       <GlobalStyle />
     </div>
   );
