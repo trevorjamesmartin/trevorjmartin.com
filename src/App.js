@@ -31,7 +31,7 @@ library.add(
 // };
 
 export default function App() {
-  const [rightMenuVisible, setRightMenuvisible] = useState(false);
+  const [leftMenuVisible, setleftMenuVisible] = useState(true);
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
 
   // const rightMenuAnimation = useSpring({
@@ -39,10 +39,10 @@ export default function App() {
   //   transform: rightMenuVisible ? `translateX(0)` : `translateX(100%)`,
   // });
 
-  const leftMenuAnimation = useSpring({
-    opacity: rightMenuVisible ? 1 : 0,
-    transform: rightMenuVisible ? `translateX(250px)` : `translateX(0)`,
-  });
+  // const leftMenuAnimation = useSpring({
+  //   opacity: leftMenuVisible ? 1 : 0,
+  //   transform: leftMenuVisible ? `translateX(250px)` : `translateX(0)`,
+  // });
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
     transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,
@@ -51,12 +51,12 @@ export default function App() {
   return (
     <div className="App">
       <button
-        className={`menu-button menu-button--left ${
-          fullMenuVisible ? " menu-button-hidden" : ""
+        className={`menu-button${
+          leftMenuVisible ? " menu-button-hidden" : " menu-button--left "
         }`}
-        onClick={() => setRightMenuvisible(!rightMenuVisible)}
+        onClick={() => setleftMenuVisible(!leftMenuVisible)}
       >
-        {rightMenuVisible ? (
+        {leftMenuVisible ? (
           <FontAwesomeIcon icon="arrow-circle-left" />
         ) : (
           <FontAwesomeIcon icon="arrow-circle-right" />
@@ -75,7 +75,7 @@ export default function App() {
         )}
       </button>
 
-      <MenuRight style={leftMenuAnimation} />
+      <MenuRight />
       <MenuFull
         style={fullMenuAnimation}
         handleClick={() => setFullMenuVisible(!fullMenuVisible)}

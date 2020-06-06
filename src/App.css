@@ -49,6 +49,6 @@
   cursor: pointer;
   position: fixed;
   top: calc(50%);
-  left: calc(50% - 100px);
+  left: calc(50% + 25px);
   width: 200px;
 }

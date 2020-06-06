@@ -1,0 +1,17 @@
+.about-page {
+  margin-left: 250px;
+}
+.show-modal-button {
+  padding: 16px;
+  background-color: #7c3c21;
+  color: #e8e4e1;
+  font-size: 1em;
+  border: none;
+  margin-top: 16px;
+  align-self: center;
+  cursor: pointer;
+  position: fixed;
+  top: calc(50%);
+  left: calc(50% + 25px);
+  width: 200px;
+}

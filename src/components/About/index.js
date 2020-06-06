@@ -3,7 +3,7 @@ import { useTransition } from "react-spring";
 import Modal from "../Modal";
 import { faAddressCard, faCat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import "./about.css";
 export default function About(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const fadingAnimation = useTransition(modalVisible, null, {
@@ -13,7 +13,7 @@ export default function About(props) {
   });
   const modalText = ":)";
   return (
-    <>
+    <div className="about-page">
       <h1>
         <FontAwesomeIcon icon={faAddressCard} alt="Home" />
       </h1>
@@ -37,6 +37,6 @@ export default function About(props) {
             />
           )
       )}{" "}
-    </>
+    </div>
   );
 }

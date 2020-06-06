@@ -8,9 +8,10 @@ import {
   faHtml5,
   faLinux,
 } from "@fortawesome/free-brands-svg-icons";
+import "./projects.css";
 const Projects = (props) => {
   return (
-    <>
+    <div className="projects-page">
       <h1>
         <FontAwesomeIcon icon={faLinux} alt="Projects" />
         <FontAwesomeIcon icon={faPython} alt="Projects" />
@@ -20,7 +21,7 @@ const Projects = (props) => {
       </h1>
       <FontAwesomeIcon icon={faCat} />
       {props.text}
-    </>
+    </div>
   );
 };
 
