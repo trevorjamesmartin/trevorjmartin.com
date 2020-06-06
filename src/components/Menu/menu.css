@@ -11,7 +11,14 @@
   width: 250px;
   height: 100vh;
 }
-
+.menu--left {
+  top: 0;
+  left: 0px;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
 .menu--full {
   width: 100vw;
   height: 100vh;
@@ -30,6 +37,9 @@
 .menu-list--right {
   margin: 100px 24px;
 }
+.menu-list--left {
+  margin: 100px 24px;
+}
 
 .menu-list-item--full {
   font-size: 5em;
@@ -43,6 +53,10 @@
 
 .menu-list-item--right {
   margin: 24px 0;
+}
+.menu-list-item--left {
+  margin: 24px 0;
+  font-size: x-large;
 }
 
 .menu a {

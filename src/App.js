@@ -34,11 +34,15 @@ export default function App() {
   const [rightMenuVisible, setRightMenuvisible] = useState(false);
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
 
-  const rightMenuAnimation = useSpring({
-    opacity: rightMenuVisible ? 1 : 0,
-    transform: rightMenuVisible ? `translateX(0)` : `translateX(100%)`,
-  });
+  // const rightMenuAnimation = useSpring({
+  //   opacity: rightMenuVisible ? 1 : 0,
+  //   transform: rightMenuVisible ? `translateX(0)` : `translateX(100%)`,
+  // });
 
+  const leftMenuAnimation = useSpring({
+    opacity: rightMenuVisible ? 1 : 0,
+    transform: rightMenuVisible ? `translateX(250px)` : `translateX(0)`,
+  });
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
     transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,
@@ -46,6 +50,18 @@ export default function App() {
 
   return (
     <div className="App">
+      <button
+        className={`menu-button menu-button--left ${
+          fullMenuVisible ? " menu-button-hidden" : ""
+        }`}
+        onClick={() => setRightMenuvisible(!rightMenuVisible)}
+      >
+        {rightMenuVisible ? (
+          <FontAwesomeIcon icon="arrow-circle-left" />
+        ) : (
+          <FontAwesomeIcon icon="arrow-circle-right" />
+        )}
+      </button>
       <button
         className={`menu-button menu-button--full${
           fullMenuVisible ? " menu-button-active" : ""
@@ -58,17 +74,8 @@ export default function App() {
           <FontAwesomeIcon icon="arrow-circle-down" />
         )}
       </button>
-      <button
-        className={`menu-button${fullMenuVisible ? " menu-button-hidden" : ""}`}
-        onClick={() => setRightMenuvisible(!rightMenuVisible)}
-      >
-        {rightMenuVisible ? (
-          <FontAwesomeIcon icon="arrow-circle-right" />
-        ) : (
-          <FontAwesomeIcon icon="arrow-circle-left" />
-        )}
-      </button>
-      <MenuRight style={rightMenuAnimation} />
+
+      <MenuRight style={leftMenuAnimation} />
       <MenuFull
         style={fullMenuAnimation}
         handleClick={() => setFullMenuVisible(!fullMenuVisible)}

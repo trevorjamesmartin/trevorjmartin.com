@@ -13,15 +13,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./menu.css";
 
 export const MenuRight = ({ style }) => (
-  <animated.div style={style} className="menu menu--right">
+  <animated.div style={style} className="menu menu--left">
     <nav>
-      <ul className="menu-list menu-list--right">
-        <li className="menu-list-item menu-list-item--right">
+      <ul className="menu-list menu-list--left">
+        <li className="menu-list-item menu-list-item--left">
           <NavLink to="/">
             <FontAwesomeIcon icon="home" alt="Home" />
           </NavLink>
         </li>
-        <li className="menu-list-item menu-list-item--right">
+        <li className="menu-list-item menu-list-item--left">
           <NavLink to="/Projects">
             <FontAwesomeIcon icon={faLinux} alt="Projects" />
             <FontAwesomeIcon icon={faPython} alt="Projects" />
@@ -30,7 +30,7 @@ export const MenuRight = ({ style }) => (
             <FontAwesomeIcon icon={faHtml5} alt="Projects" />
           </NavLink>
         </li>
-        <li className="menu-list-item menu-list-item--right">
+        <li className="menu-list-item menu-list-item--left">
           <NavLink to="/About">
             <FontAwesomeIcon icon={faAddressCard} alt="About" />
           </NavLink>
