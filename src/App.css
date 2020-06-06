@@ -37,18 +37,31 @@
 .menu-button:focus {
   background: #f9c49a;
 }
+.page-container {
+  margin-left: 250px;
+}
+/* Small */
 
-.show-modal-button {
-  padding: 16px;
-  background-color: #7c3c21;
-  color: #e8e4e1;
-  font-size: 1em;
-  border: none;
-  margin-top: 16px;
-  align-self: center;
-  cursor: pointer;
-  position: fixed;
-  top: calc(50%);
-  left: calc(50% + 25px);
-  width: 200px;
+@media only screen and (max-width: 700px) {
+  /* body {
+    background-color: blue;
+  } */
+  .page-container {
+    margin-left: 0px;
+  }
+  .menu--left {
+    display: None;
+  }
+  .show-modal-button {
+    left: calc(50vw - 100px);
+    align-self: auto;
+  }
+  .modal {
+    left: calc(50% - 200px);
+  }
+}
+@media screen and (min-width: 900px) {
+  /* body {
+    background-color: yellow;
+  } */
 }

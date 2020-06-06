@@ -80,10 +80,15 @@ export default function App() {
         style={fullMenuAnimation}
         handleClick={() => setFullMenuVisible(!fullMenuVisible)}
       />
-      <Route exact path="/" component={() => <Home text="Home" />} />
-      <Route path="/about" component={() => <About text="About" />} />
-      <Route path="/projects" component={() => <Projects text="Projects" />} />
-      <GlobalStyle />
+      <div className="page-container">
+        <Route exact path="/" component={() => <Home text="Home" />} />
+        <Route path="/about" component={() => <About text="About" />} />
+        <Route
+          path="/projects"
+          component={() => <Projects text="Projects" />}
+        />
+        <GlobalStyle />
+      </div>
     </div>
   );
 }
