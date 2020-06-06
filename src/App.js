@@ -9,22 +9,15 @@ import Home from "./components/Home";
 import Projects from "./components/Projects";
 // import { fab } from "@fortawesome/fontawesome-free"; //  all of the brand icons
 import {
+  faBars,
   faHome,
   faArrowCircleLeft,
   faArrowCircleRight,
-  faArrowCircleDown,
-  faArrowCircleUp,
 } from "@fortawesome/free-solid-svg-icons"; //"check-square" and "coffee"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
 import { Route } from "react-router-dom";
-library.add(
-  faHome,
-  faArrowCircleUp,
-  faArrowCircleDown,
-  faArrowCircleLeft,
-  faArrowCircleRight
-);
+library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 
 // const Placeholder = (props) => {
 //   return <h1>{props.text}</h1>;
@@ -51,27 +44,15 @@ export default function App() {
   return (
     <div className="App">
       <button
-        className={`menu-button${
-          leftMenuVisible ? " menu-button-hidden" : " menu-button--left "
-        }`}
-        onClick={() => setleftMenuVisible(!leftMenuVisible)}
-      >
-        {leftMenuVisible ? (
-          <FontAwesomeIcon icon="arrow-circle-left" />
-        ) : (
-          <FontAwesomeIcon icon="arrow-circle-right" />
-        )}
-      </button>
-      <button
         className={`menu-button menu-button--full${
           fullMenuVisible ? " menu-button-active" : ""
         }`}
         onClick={() => setFullMenuVisible(!fullMenuVisible)}
       >
         {fullMenuVisible ? (
-          <FontAwesomeIcon icon="arrow-circle-up" />
+          <FontAwesomeIcon icon={faBars} />
         ) : (
-          <FontAwesomeIcon icon="arrow-circle-down" />
+          <FontAwesomeIcon icon={faBars} />
         )}
       </button>
 

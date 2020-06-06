@@ -70,4 +70,7 @@
   .menu--left {
     width: 250px;
   }
+  .menu-button--full {
+    display: none;
+  }
 }
