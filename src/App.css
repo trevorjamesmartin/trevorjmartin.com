@@ -60,8 +60,14 @@
     left: calc(50% - 200px);
   }
 }
+@media screen and (max-width: 900px) {
+  .menu--left {
+    width: auto;
+    font-size: small;
+  }
+}
 @media screen and (min-width: 900px) {
-  /* body {
-    background-color: yellow;
-  } */
+  .menu--left {
+    width: 250px;
+  }
 }
