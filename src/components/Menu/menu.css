@@ -16,6 +16,7 @@
   z-index: 100;
 }
 .menu--full {
+  position: fixed;
   width: 100vw;
   height: 100vh;
   left: 0;
