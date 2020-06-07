@@ -61,17 +61,8 @@
     left: calc(50% - 200px);
   }
 }
-@media screen and (max-width: 900px) {
-  .menu--left {
-    width: auto;
-    font-size: small;
-  }
-}
+
 @media screen and (min-width: 900px) {
-  .menu--left {
-    width: 250px;
-    height: 100vw;
-  }
   .menu-button--full {
     display: none;
   }

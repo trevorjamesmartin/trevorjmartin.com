@@ -6,12 +6,10 @@
 }
 
 .menu--left {
+  position: fixed;
   top: 0;
   left: 0px;
-  position: fixed;
-  /* width: 250px; */
   height: 100vh;
-  display: flex;
   justify-content: center;
   z-index: 100;
 }
@@ -46,7 +44,7 @@
 }
 
 .menu-list-item--left {
-  margin: 24px 0;
+  margin: 2rem;
   font-size: x-large;
 }
 
