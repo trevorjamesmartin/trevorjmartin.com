@@ -12,3 +12,10 @@
   left: calc(50% + 25px);
   width: 200px;
 }
+
+.about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

@@ -47,6 +47,7 @@
     background-color: blue;
   } */
   .page-container {
+    display: flex;
     margin-left: 0px;
   }
   .menu--left {
@@ -69,6 +70,7 @@
 @media screen and (min-width: 900px) {
   .menu--left {
     width: 250px;
+    height: 100vw;
   }
   .menu-button--full {
     display: none;

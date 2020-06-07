@@ -9,6 +9,15 @@ import {
   faLinux,
 } from "@fortawesome/free-brands-svg-icons";
 import "./projects.css";
+import { Card, CardTable } from "../Card";
+const testCards = (n) => {
+  const cards = [];
+  for (let card = 0; card < n; card++) {
+    cards.push(<Card key={card} />);
+  }
+  return cards;
+};
+
 const Projects = (props) => {
   return (
     <div className="projects-page">
@@ -21,6 +30,7 @@ const Projects = (props) => {
       </h1>
       <FontAwesomeIcon icon={faCat} />
       {props.text}
+      <CardTable cards={testCards(12)}></CardTable>
     </div>
   );
 };

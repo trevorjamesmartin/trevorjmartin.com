@@ -5,19 +5,15 @@
   z-index: 30;
 }
 
-.menu--right {
-  top: 0;
-  right: 0;
-  width: 250px;
-  height: 100vh;
-}
 .menu--left {
   top: 0;
   left: 0px;
-  width: 250px;
+  position: fixed;
+  /* width: 250px; */
   height: 100vh;
   display: flex;
   justify-content: center;
+  z-index: 100;
 }
 .menu--full {
   width: 100vw;
@@ -34,9 +30,6 @@
   list-style: none;
 }
 
-.menu-list--right {
-  margin: 100px 24px;
-}
 .menu-list--left {
   margin: 100px 24px;
 }
@@ -51,9 +44,6 @@
   letter-spacing: 1px;
 }
 
-.menu-list-item--right {
-  margin: 24px 0;
-}
 .menu-list-item--left {
   margin: 24px 0;
   font-size: x-large;

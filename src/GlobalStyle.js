@@ -9,9 +9,14 @@ const GlobalStyles = createGlobalStyle`
     margin: 0px;
     padding: 0px;
     box-sizing: inherit;
-    overflow-x: hidden;    
+    overflow-x: hidden;
   }
-
+  :root {
+    --color-one: ${({ colorOne }) => colorOne || "brown"}
+    --color-two: ${({ colorTwo }) => colorTwo || "orange"}
+    --color-three: ${({ colorThree }) => colorThree || "peach"}
+    --color-four: ${({ colorFour }) => colorFour || "lightgrey"}
+  }
   html {
     font-family: 'IBM Plex Mono', monospace;
   }

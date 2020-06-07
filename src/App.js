@@ -26,7 +26,12 @@ library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 export default function App() {
   const [leftMenuVisible, setleftMenuVisible] = useState(true);
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
-
+  const themeColors = {
+    colorOne: "#7c3c21",
+    colorTwo: "#ec823a",
+    colorThree: "#f9c49a",
+    colorFour: "#e8e4e1",
+  };
   // const rightMenuAnimation = useSpring({
   //   opacity: rightMenuVisible ? 1 : 0,
   //   transform: rightMenuVisible ? `translateX(0)` : `translateX(100%)`,
@@ -68,7 +73,7 @@ export default function App() {
           path="/projects"
           component={() => <Projects text="Projects" />}
         />
-        <GlobalStyle />
+        <GlobalStyle {...themeColors} />
       </div>
     </div>
   );
