@@ -45,7 +45,7 @@ const Projects = (props) => {
       altTag="project screenshot"
       cardDesc="GNU/GNOME shell extension"
       selectCard={selectCard}
-      isSelected={selected.key === 1}
+      isSelected={selected.key === 2}
       cardNumber={2}
     />,
     <Card
@@ -55,7 +55,7 @@ const Projects = (props) => {
       altTag="project screenshot"
       cardDesc="RESTful API, expressJS"
       selectCard={selectCard}
-      isSelected={selected.key === 1}
+      isSelected={selected.key === 3}
       cardNumber={3}
       hostedURL="https://bw-replate-1.herokuapp.com/"
       sourceURL="https://github.com/bw-replate/backend"
@@ -67,7 +67,7 @@ const Projects = (props) => {
       altTag="project screenshot"
       cardDesc="Godot"
       selectCard={selectCard}
-      isSelected={selected.key === 1}
+      isSelected={selected.key === 4}
       cardNumber={4}
       hostedURL="/tets"
       sourceURL="https://github.com/debauchery1st/tets"

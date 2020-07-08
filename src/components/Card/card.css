@@ -7,6 +7,9 @@
   padding: 1rem;
   border-radius: 7px;
 }
+.card-selected {
+  border: 3px solid #ec823a;
+}
 .card-table {
   margin-top: 5rem;
   display: flex;
@@ -30,6 +33,9 @@
     border: 1px solid black;
     height: 12rem;
     width: 70vw;
+  }
+  .card-selected {
+    border: 3px solid #ec823a;
   }
   .card-img {
     width: 100%;
