@@ -7,15 +7,22 @@ const Card = ({
   cardDesc,
   selectCard,
   isSelected,
+  isOpen,
   cardNumber,
   portraitMode,
-  openCard,
+  toggleOpen,
 }) => {
   return (
     <div
-      className={isSelected ? "card card-selected" : "card"}
+      className={
+        isOpen
+          ? "card-open card-selected"
+          : isSelected
+          ? "card card-selected"
+          : "card"
+      }
       onMouseOver={() => selectCard(cardNumber)}
-      onClick={() => openCard(cardNumber)}
+      onClick={() => toggleOpen(cardNumber)}
     >
       <h3>{cardTitle || "Project"}</h3>
       <img
@@ -28,7 +35,7 @@ const Card = ({
   );
 };
 
-const CardTable = ({ cards }) => {
+const CardTable = ({ cards, cardState }) => {
   return <div className="card-table">{cards}</div>;
 };
 

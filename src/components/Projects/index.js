@@ -12,10 +12,22 @@ import "./projects.css";
 import { Card, CardTable } from "../Card";
 import projectList from "./projects.json";
 const Projects = (props) => {
-  const [selected, setSelected] = useState({ key: undefined });
+  const [selected, setSelected] = useState({
+    key: undefined,
+    opened: undefined,
+  });
   const selectCard = (key) => {
     console.log(key);
-    setSelected({ key });
+    selected.opened === undefined && setSelected({ key });
+  };
+  const toggleOpen = (key) => {
+    if (selected.key === key) {
+      if (selected.opened === key) {
+        setSelected({ key: undefined, opened: undefined }); // close card
+      } else {
+        setSelected({ ...selected, opened: key }); // select and open
+      }
+    }
   };
   const renderCard = (
     {
@@ -35,12 +47,14 @@ const Projects = (props) => {
       imgURL={imgURL}
       altTag={altTag}
       cardDesc={cardDesc}
-      selectCard={selectCard}
+      selectCard={() => selectCard(i)}
       isSelected={selected.key === i}
       cardNumber={i}
       hostedURL={hostedURL}
       sourceURL={sourceURL}
       portraitMode={portraitMode ? portraitMode : false}
+      toggleOpen={() => toggleOpen(i)}
+      isOpen={selected.opened === i}
     />
   );
   const cards = projectList.map((p, i) => renderCard(p, i));
@@ -55,7 +69,7 @@ const Projects = (props) => {
       </h1>
       <FontAwesomeIcon icon={faCat} />
       {props.text}
-      <CardTable cards={cards}></CardTable>
+      <CardTable cards={cards} cardState={selected}></CardTable>
     </div>
   );
 };
