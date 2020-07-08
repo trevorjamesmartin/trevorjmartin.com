@@ -10,81 +10,40 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "./projects.css";
 import { Card, CardTable } from "../Card";
-
+import projectList from "./projects.json";
 const Projects = (props) => {
   const [selected, setSelected] = useState({ key: undefined });
   const selectCard = (key) => {
     console.log(key);
     setSelected({ key });
   };
-  const cards = [
+  const renderCard = (
+    {
+      title: cardTitle,
+      thumb: imgURL,
+      alt: altTag,
+      desc: cardDesc,
+      hosted: hostedURL,
+      source: sourceURL,
+      portrait: portraitMode,
+    },
+    i
+  ) => (
     <Card
-      key={0}
-      cardTitle="GitHub Keepers"
-      imgURL="/images/keepers.gif"
-      altTag="project screenshot"
-      cardDesc="React, HTML, CSS"
+      key={i}
+      cardTitle={cardTitle}
+      imgURL={imgURL}
+      altTag={altTag}
+      cardDesc={cardDesc}
       selectCard={selectCard}
-      isSelected={selected.key === 0}
-      cardNumber={0}
-    />,
-    <Card
-      key={1}
-      cardTitle="Conway's Game Of Life"
-      imgURL="/images/conway.gif"
-      altTag="project screenshot"
-      cardDesc="React, HTML, CSS"
-      selectCard={selectCard}
-      isSelected={selected.key === 1}
-      cardNumber={1}
-    />,
-    <Card
-      key={2}
-      cardTitle="Chuck Norris"
-      imgURL="/images/chuck.png"
-      altTag="project screenshot"
-      cardDesc="GNU/GNOME shell extension"
-      selectCard={selectCard}
-      isSelected={selected.key === 2}
-      cardNumber={2}
-    />,
-    <Card
-      key={3}
-      cardTitle="Replate API"
-      imgURL="/images/replate.gif"
-      altTag="project screenshot"
-      cardDesc="RESTful API, expressJS"
-      selectCard={selectCard}
-      isSelected={selected.key === 3}
-      cardNumber={3}
-      hostedURL="https://bw-replate-1.herokuapp.com/"
-      sourceURL="https://github.com/bw-replate/backend"
-    />,
-    <Card
-      key={4}
-      cardTitle="Tets"
-      imgURL="/images/tets.gif"
-      altTag="project screenshot"
-      cardDesc="Godot"
-      selectCard={selectCard}
-      isSelected={selected.key === 4}
-      cardNumber={4}
-      hostedURL="/tets"
-      sourceURL="https://github.com/debauchery1st/tets"
-      portraitMode={true}
-    />,
-  ];
-  // for (let c = cards.length; c < 12; c++) {
-  //   cards.push(
-  //     <Card
-  //       key={c}
-  //       selectCard={selectCard}
-  //       isSelected={selected.key === c}
-  //       cardNumber={c}
-  //     />
-  //   );
-  // }
-
+      isSelected={selected.key === i}
+      cardNumber={i}
+      hostedURL={hostedURL}
+      sourceURL={sourceURL}
+      portraitMode={portraitMode ? portraitMode : false}
+    />
+  );
+  const cards = projectList.map((p, i) => renderCard(p, i));
   return (
     <div className="projects-page">
       <h1>

@@ -9,11 +9,13 @@ const Card = ({
   isSelected,
   cardNumber,
   portraitMode,
+  openCard,
 }) => {
   return (
     <div
       className={isSelected ? "card card-selected" : "card"}
-      onClick={() => selectCard(cardNumber)}
+      onMouseOver={() => selectCard(cardNumber)}
+      onClick={() => openCard(cardNumber)}
     >
       <h3>{cardTitle || "Project"}</h3>
       <img

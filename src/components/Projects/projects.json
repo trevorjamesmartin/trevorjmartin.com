@@ -1,0 +1,43 @@
+[
+  {
+    "title": "GitHub Keepers",
+    "thumb": "/images/keepers.gif",
+    "alt": "project screenshot",
+    "desc": "React, HTML, CSS",
+    "hosted": "",
+    "source": ""
+  },
+  {
+    "title": "Conway's Game Of Life",
+    "thumb": "/images/conway.gif",
+    "alt": "project screenshot",
+    "desc": "React, HTML, CSS",
+    "hosted": "",
+    "source": ""
+  },
+  {
+    "title": "Chuck Norris",
+    "thumb": "/images/chuck.png",
+    "alt": "project screenshot",
+    "desc": "GNU/GNOME shell extension",
+    "hosted": "",
+    "source": ""
+  },
+  {
+    "title": "Replate API",
+    "thumb": "/images/replate.gif",
+    "alt": "project screenshot",
+    "desc": "RESTful API, expressJS",
+    "hosted": "https://bw-replate-1.herokuapp.com/",
+    "source": "https://github.com/bw-replate/backend"
+  },
+  {
+    "title": "Tets",
+    "thumb": "/images/tets.gif",
+    "alt": "project screenshot",
+    "desc": "Godot",
+    "hosted": "/tets",
+    "source": "https://github.com/debauchery1st/tets",
+    "portrait": true
+  }
+]
