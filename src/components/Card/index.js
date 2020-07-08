@@ -1,4 +1,8 @@
 import React from "react";
+import { animated, useSpring } from "react-spring";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./card.css";
 const Card = ({
   imgURL,
@@ -11,9 +15,16 @@ const Card = ({
   cardNumber,
   portraitMode,
   toggleOpen,
+  hostedURL,
+  sourceURL,
 }) => {
+  const snackbar = useSpring({
+    opacity: isSelected ? 1 : 0,
+    transform: isOpen ? `translateY(0%)` : `translateY(100%)`,
+  });
   return (
-    <div
+    <animated.div
+      style={isOpen ? snackbar : {}}
       className={
         isOpen
           ? "card-open card-selected"
@@ -39,7 +50,20 @@ const Card = ({
         alt={altTag || "placeholder"}
       ></img>
       <p>{cardDesc || ""}</p>
-    </div>
+      <div
+        className="card-details"
+        style={isOpen ? { display: "block" } : { display: "none" }}
+      >
+        <span className="card-links">
+          <a href={sourceURL}>
+            <FontAwesomeIcon icon={faGithub} alt="source code" />
+          </a>
+          <a href={sourceURL}>
+            <FontAwesomeIcon icon={faGlobe} alt="source code" />
+          </a>
+        </span>
+      </div>
+    </animated.div>
   );
 };
 
