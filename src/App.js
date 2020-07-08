@@ -19,12 +19,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 
-// const Placeholder = (props) => {
-//   return <h1>{props.text}</h1>;
-// };
-
 export default function App() {
-  const [leftMenuVisible, setleftMenuVisible] = useState(true);
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
   const themeColors = {
     colorOne: "#7c3c21",
@@ -32,15 +27,7 @@ export default function App() {
     colorThree: "#f9c49a",
     colorFour: "#e8e4e1",
   };
-  // const rightMenuAnimation = useSpring({
-  //   opacity: rightMenuVisible ? 1 : 0,
-  //   transform: rightMenuVisible ? `translateX(0)` : `translateX(100%)`,
-  // });
 
-  // const leftMenuAnimation = useSpring({
-  //   opacity: leftMenuVisible ? 1 : 0,
-  //   transform: leftMenuVisible ? `translateX(250px)` : `translateX(0)`,
-  // });
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
     transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,

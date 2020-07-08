@@ -1,12 +1,26 @@
 import React from "react";
 import "./card.css";
-const Card = (props) => {
+const Card = ({
+  imgURL,
+  altTag,
+  cardTitle,
+  cardDesc,
+  selectCard,
+  isSelected,
+  cardNumber,
+}) => {
   return (
-    <div className="card">
-      <h2>Card</h2>
-      <h3>title</h3>
-      <img src="https://placekitten.com/150/77" alt="placeholder"></img>
-      <p>description</p>
+    <div
+      className={isSelected ? "card card-selected" : "card"}
+      onClick={() => selectCard(cardNumber)}
+    >
+      <h3>{cardTitle || "Project"}</h3>
+      <img
+        className="card-img"
+        src={imgURL || "https://placekitten.com/150/77"}
+        alt={altTag || "placeholder"}
+      ></img>
+      <p>{cardDesc || ""}</p>
     </div>
   );
 };

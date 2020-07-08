@@ -1,4 +1,5 @@
 .card {
+  overflow: hidden;
   margin: 1rem;
   border: 1px solid black;
   width: 18rem;
@@ -14,10 +15,21 @@
   flex-flow: row wrap;
 }
 
+.card-img {
+  width: 100%;
+  max-width: 25vw;
+  height: auto;
+}
+
 @media only screen and (max-width: 700px) {
   .card {
+    overflow: hidden;
     border: 1px solid black;
     height: 12rem;
     width: 70vw;
+  }
+  .card-img {
+    width: 100%;
+    height: auto;
   }
 }
