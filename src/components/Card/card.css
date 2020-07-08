@@ -16,6 +16,16 @@
   max-width: 25vw;
   height: auto;
 }
+.card-img-open {
+  filter: brightness(100%);
+  width: auto;
+  max-height: 50%;
+  max-width: 60%;
+  height: auto;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+}
+
 .card-selected {
   /* filter: brightness(100%); */
   border: 3px solid #ec823a;
@@ -35,6 +45,7 @@
   height: 90vh;
   background-color: #7c3c21;
   color: #e8e4e1;
+  border-radius: 1rem;
 }
 .card-table {
   margin-top: 5rem;
