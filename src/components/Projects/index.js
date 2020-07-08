@@ -38,18 +38,52 @@ const Projects = (props) => {
       isSelected={selected.key === 1}
       cardNumber={1}
     />,
+    <Card
+      key={2}
+      cardTitle="Chuck Norris"
+      imgURL="/images/chuck.png"
+      altTag="project screenshot"
+      cardDesc="GNU/GNOME shell extension"
+      selectCard={selectCard}
+      isSelected={selected.key === 1}
+      cardNumber={2}
+    />,
+    <Card
+      key={3}
+      cardTitle="Replate API"
+      imgURL="/images/replate.gif"
+      altTag="project screenshot"
+      cardDesc="RESTful API, expressJS"
+      selectCard={selectCard}
+      isSelected={selected.key === 1}
+      cardNumber={3}
+      hostedURL="https://bw-replate-1.herokuapp.com/"
+      sourceURL="https://github.com/bw-replate/backend"
+    />,
+    <Card
+      key={4}
+      cardTitle="Tets"
+      imgURL="/images/tets.gif"
+      altTag="project screenshot"
+      cardDesc="Godot"
+      selectCard={selectCard}
+      isSelected={selected.key === 1}
+      cardNumber={4}
+      hostedURL="/tets"
+      sourceURL="https://github.com/debauchery1st/tets"
+      portraitMode={true}
+    />,
   ];
-
-  for (let c = cards.length; c < 12; c++) {
-    cards.push(
-      <Card
-        key={c}
-        selectCard={selectCard}
-        isSelected={selected.key === c}
-        cardNumber={c}
-      />
-    );
-  }
+  // for (let c = cards.length; c < 12; c++) {
+  //   cards.push(
+  //     <Card
+  //       key={c}
+  //       selectCard={selectCard}
+  //       isSelected={selected.key === c}
+  //       cardNumber={c}
+  //     />
+  //   );
+  // }
 
   return (
     <div className="projects-page">

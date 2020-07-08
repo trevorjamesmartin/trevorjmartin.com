@@ -20,7 +20,10 @@
   max-width: 25vw;
   height: auto;
 }
-
+.card-img-portrait {
+  height: 80%;
+  width: auto;
+}
 @media only screen and (max-width: 700px) {
   .card {
     overflow: hidden;

@@ -8,6 +8,7 @@ const Card = ({
   selectCard,
   isSelected,
   cardNumber,
+  portraitMode,
 }) => {
   return (
     <div
@@ -16,7 +17,7 @@ const Card = ({
     >
       <h3>{cardTitle || "Project"}</h3>
       <img
-        className="card-img"
+        className={portraitMode ? "card-img-portrait" : "card-img"}
         src={imgURL || "https://placekitten.com/150/77"}
         alt={altTag || "placeholder"}
       ></img>
