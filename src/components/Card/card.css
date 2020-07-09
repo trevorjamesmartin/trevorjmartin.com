@@ -30,11 +30,14 @@
   letter-spacing: 1px;
 }
 .card-links {
+  --link-hover-color: #ec823a;
+  --link-color: #e8e4e1;
   display: flex;
   justify-content: space-evenly;
   font-size: 5rem;
-  text-decoration: none;
+  /* text-decoration: none; */
 }
+
 .card-selected {
   /* filter: brightness(100%); */
   border: 3px solid #ec823a;

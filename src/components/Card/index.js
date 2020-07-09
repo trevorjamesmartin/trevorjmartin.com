@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +18,7 @@ const Card = ({
   hostedURL,
   sourceURL,
 }) => {
+  const [linkState, setLinkState] = useState({ url: undefined });
   const snackbar = useSpring({
     opacity: isSelected ? 1 : 0,
     transform: isOpen ? `translateY(0%)` : `translateY(100%)`,
@@ -60,20 +61,33 @@ const Card = ({
             alt="source code"
             target="_blank"
             rel="noopener noreferrer"
+            onMouseOver={() => setLinkState({ url: sourceURL })}
+            onMouseLeave={() => setLinkState({ url: undefined })}
           >
-            <FontAwesomeIcon icon={faGithub} alt="source code" />
+            <FontAwesomeIcon
+              icon={faGithub}
+              color={
+                linkState.url === sourceURL
+                  ? `var(--link-hover-color)`
+                  : `var(--link-color)`
+              }
+            />
           </a>
           <a
             href={hostedURL}
             alt="web application"
             target="_blank"
             rel="noopener noreferrer"
+            onMouseOver={() => setLinkState({ url: hostedURL })}
+            onMouseLeave={() => setLinkState({ url: undefined })}
           >
             <FontAwesomeIcon
               icon={faGlobe}
-              alt="web application"
-              target="_blank"
-              rel="noopener noreferrer"
+              color={
+                linkState.url === hostedURL
+                  ? `var(--link-hover-color)`
+                  : `var(--link-color)`
+              }
             />
           </a>
         </span>
