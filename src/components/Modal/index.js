@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { animated } from "react-spring";
+import { themeColors } from "../../GlobalStyle";
 import "./modal.css";
 
 /**
@@ -10,16 +11,39 @@ import "./modal.css";
  * @param {string} text dialog text
  * @param {Function} faIcon function that returns a FontAwesome icon
  */
-const Modal = ({ style, closeModal, title, text, faIcon }) => (
-  <animated.div style={style} className="modal">
-    <h2>{faIcon()}</h2>
-    <h3 className="modal-title">{title}</h3>
-    <br />
-    <p className="modal-content">{text}</p>
-    <br />
-    <button className="modal-close-button" onClick={closeModal}>
-      Close
-    </button>
-  </animated.div>
-);
+const Modal = ({ style, closeModal, title, text, faIcon }) => {
+  const [linkState, setLinkState] = useState({ hover: false });
+
+  return (
+    <animated.div style={style} className="modal">
+      <h2>{faIcon()}</h2>
+      <h3 className="modal-title">{title}</h3>
+      <br />
+      {/* <p className="modal-content">{text}</p> */}
+      <a
+        href="https://www.linkedin.com/in/trevor4hire/"
+        alt="linkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setLinkState({ hover: true })}
+        onMouseLeave={() => setLinkState({ hover: false })}
+        style={{
+          textDecoration: "none",
+          letterSpacing: "1px",
+          fontSize: "1rem",
+          color: linkState.hover
+            ? themeColors.colorTwo
+            : themeColors.colorThree,
+          textDecoration: "underline",
+        }}
+      >
+        let's connect on linkedIn
+      </a>
+      <br />
+      <button className="modal-close-button" onClick={closeModal}>
+        Close
+      </button>
+    </animated.div>
+  );
+};
 export default Modal;

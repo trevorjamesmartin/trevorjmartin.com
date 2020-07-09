@@ -17,7 +17,6 @@ const Projects = (props) => {
     opened: undefined,
   });
   const selectCard = (key) => {
-    console.log(key);
     selected.opened === undefined && setSelected({ key });
   };
   const toggleOpen = (key) => {
