@@ -55,11 +55,11 @@ const Card = ({
         style={isOpen ? { display: "block" } : { display: "none" }}
       >
         <span className="card-links">
-          <a href={sourceURL}>
+          <a href={sourceURL} alt="source code">
             <FontAwesomeIcon icon={faGithub} alt="source code" />
           </a>
-          <a href={sourceURL}>
-            <FontAwesomeIcon icon={faGlobe} alt="source code" />
+          <a href={hostedURL} alt="web application">
+            <FontAwesomeIcon icon={faGlobe} alt="web application" />
           </a>
         </span>
       </div>

@@ -4,24 +4,24 @@
     "thumb": "/images/keepers.gif",
     "alt": "project screenshot",
     "desc": "React, HTML, CSS",
-    "hosted": "",
-    "source": ""
+    "hosted": "https://app.trevorjmartin.now.sh/",
+    "source": "https://github.com/debauchery1st/React-Github-User-Card/tree/trevor-martin"
   },
   {
     "title": "Conway's Game Of Life",
     "thumb": "/images/conway.gif",
     "alt": "project screenshot",
     "desc": "React, HTML, CSS",
-    "hosted": "",
-    "source": ""
+    "hosted": "https://gameoflife.trevorjmartin.com/",
+    "source": "https://github.com/debauchery1st/CS-Build-Week-1"
   },
   {
     "title": "Chuck Norris",
     "thumb": "/images/chuck.png",
     "alt": "project screenshot",
     "desc": "GNU/GNOME shell extension",
-    "hosted": "",
-    "source": ""
+    "hosted": "https://extensions.gnome.org/extension/1592/chuck-norris/",
+    "source": "https://github.com/debauchery1st/Chuck_Norris"
   },
   {
     "title": "Replate (backend)",
