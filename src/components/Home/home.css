@@ -4,3 +4,11 @@
   align-items: center;
   width: 100%;
 }
+.hello-world {
+  margin-top: 2rem;
+  display: flex;
+  flex-flow: column;
+  width: 80vw;
+  justify-content: space-evenly;
+  align-items: center;
+}
