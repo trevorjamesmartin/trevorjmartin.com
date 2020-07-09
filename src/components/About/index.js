@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTransition } from "react-spring";
+import { themeColors } from "../../GlobalStyle";
 import Modal from "../Modal";
 import {
   faAddressCard,
@@ -12,6 +13,8 @@ import "./about.css";
 // import { NavLink } from "react-router-dom";
 export default function About(props) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [linkState, setLinkState] = useState({ hover: false });
+  const [btnState, setBtnState] = useState({ hover: false });
   const fadingAnimation = useTransition(modalVisible, null, {
     from: { opacity: 0, transform: "translateY(-50px)" },
     enter: { opacity: 1, transform: "translateY(0px)" },
@@ -31,13 +34,24 @@ export default function About(props) {
           alt="linkedIn"
           target="_blank"
           rel="noopener noreferrer"
+          onMouseEnter={() => setLinkState({ hover: true })}
+          onMouseLeave={() => setLinkState({ hover: false })}
         >
-          <FontAwesomeIcon icon={faLinkedin} alt="linkedIn" />
+          <FontAwesomeIcon
+            icon={faLinkedin}
+            alt="linkedIn"
+            color={
+              linkState.hover ? themeColors.colorTwo : themeColors.colorOne
+            }
+          />
           <p
             style={{
               textDecoration: "none",
               letterSpacing: "1px",
               fontSize: "1rem",
+              color: linkState.hover
+                ? themeColors.colorTwo
+                : themeColors.colorOne,
             }}
           >
             connect
@@ -47,6 +61,13 @@ export default function About(props) {
       <button
         className="show-modal-button"
         onClick={() => setModalVisible(true)}
+        onMouseEnter={() => setBtnState({ hover: true })}
+        onMouseLeave={() => setBtnState({ hover: false })}
+        style={{
+          backgroundColor: btnState.hover
+            ? themeColors.colorTwo
+            : themeColors.colorOne,
+        }}
       >
         Contact me
       </button>

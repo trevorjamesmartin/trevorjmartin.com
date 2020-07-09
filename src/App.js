@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GlobalStyle from "./GlobalStyle";
+import { GlobalStyles, themeColors } from "./GlobalStyle";
 import { useSpring } from "react-spring";
 import { MenuRight, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -21,12 +21,6 @@ library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 
 export default function App() {
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
-  const themeColors = {
-    colorOne: "#7c3c21",
-    colorTwo: "#ec823a",
-    colorThree: "#f9c49a",
-    colorFour: "#e8e4e1",
-  };
 
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
@@ -60,7 +54,7 @@ export default function App() {
           path="/projects"
           component={() => <Projects text="Projects" />}
         />
-        <GlobalStyle {...themeColors} />
+        <GlobalStyles {...themeColors} />
       </div>
     </div>
   );

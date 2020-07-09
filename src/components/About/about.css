@@ -21,6 +21,8 @@
 }
 
 .about-details {
+  /* --link-hover-color: #ec823a;
+  --link-color: #e8e4e1; */
   font-size: xx-large;
   margin-top: 2rem;
   display: flex;

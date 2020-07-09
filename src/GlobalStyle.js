@@ -1,6 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyles = createGlobalStyle`
+export const themeColors = {
+  colorOne: "#7c3c21",
+  colorTwo: "#ec823a",
+  colorThree: "#f9c49a",
+  colorFour: "#e8e4e1",
+};
+
+export const GlobalStyles = createGlobalStyle`
 
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap');
   *,
@@ -31,5 +38,3 @@ const GlobalStyles = createGlobalStyle`
   `;
 // font-family: 'IBM Plex Serif', serif;
 // font-family: 'IBM Plex Mono', monospace;
-
-export default GlobalStyles;
