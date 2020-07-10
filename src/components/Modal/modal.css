@@ -10,10 +10,12 @@
   left: calc(50% - 75px);
   display: flex;
   flex-direction: column;
+  border-radius: 4px;
 }
 
 .modal-close-button {
   padding: 16px;
+  border-radius: 4px;
   background-color: #e8e4e1;
   color: #7c3c21;
   font-size: 1em;

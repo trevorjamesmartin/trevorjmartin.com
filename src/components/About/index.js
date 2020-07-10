@@ -99,6 +99,7 @@ export default function About(props) {
         onMouseEnter={() => setBtnState({ hover: true, ref: "modal" })}
         onMouseLeave={() => setBtnState({ hover: false, ref: undefined })}
         style={{
+          borderRadius: "4px",
           backgroundColor: btnState.hover
             ? themeColors.colorTwo
             : themeColors.colorOne,
