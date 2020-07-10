@@ -25,6 +25,11 @@
   --link-color: #e8e4e1; */
   font-size: xx-large;
   margin-top: 2rem;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
+}
+
+a {
+  text-decoration: none;
 }

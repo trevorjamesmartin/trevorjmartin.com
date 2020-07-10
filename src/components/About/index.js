@@ -7,13 +7,14 @@ import {
   faCat,
   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./about.css";
 // import { NavLink } from "react-router-dom";
 export default function About(props) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [linkState, setLinkState] = useState({ hover: false });
+  const [linkState, setLinkState] = useState({ hover: false, url: "" });
   const [btnState, setBtnState] = useState({ hover: false });
   const fadingAnimation = useTransition(modalVisible, null, {
     from: { opacity: 0, transform: "translateY(-50px)" },
@@ -34,14 +35,16 @@ export default function About(props) {
           alt="linkedIn"
           target="_blank"
           rel="noopener noreferrer"
-          onMouseEnter={() => setLinkState({ hover: true })}
-          onMouseLeave={() => setLinkState({ hover: false })}
+          onMouseEnter={() => setLinkState({ hover: true, ref: "li" })}
+          onMouseLeave={() => setLinkState({ hover: false, ref: undefined })}
         >
           <FontAwesomeIcon
             icon={faLinkedin}
             alt="linkedIn"
             color={
-              linkState.hover ? themeColors.colorTwo : themeColors.colorOne
+              linkState.hover && linkState.ref === "li"
+                ? themeColors.colorTwo
+                : themeColors.colorOne
             }
           />
           <p
@@ -49,20 +52,52 @@ export default function About(props) {
               textDecoration: "none",
               letterSpacing: "1px",
               fontSize: "1rem",
-              color: linkState.hover
-                ? themeColors.colorTwo
-                : themeColors.colorOne,
+              color:
+                linkState.hover && linkState.ref === "li"
+                  ? themeColors.colorTwo
+                  : themeColors.colorOne,
             }}
           >
-            connect
+            Linkedin
+          </p>
+        </a>
+        <a
+          href="https://github.com/debauchery1st"
+          alt="Github Profile"
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={() => setLinkState({ hover: true, ref: "gh" })}
+          onMouseLeave={() => setLinkState({ hover: false, ref: undefined })}
+        >
+          <FontAwesomeIcon
+            icon={faGithub}
+            alt="Octo Cat"
+            color={
+              linkState.hover && linkState.ref === "gh"
+                ? themeColors.colorTwo
+                : themeColors.colorOne
+            }
+          />
+          <p
+            style={{
+              textDecoration: "none",
+              letterSpacing: "1px",
+              fontSize: "1rem",
+              color:
+                linkState.hover && linkState.ref === "gh"
+                  ? themeColors.colorTwo
+                  : themeColors.colorOne,
+            }}
+          >
+            Github
           </p>
         </a>
       </div>
       <button
         className="show-modal-button"
         onClick={() => setModalVisible(true)}
-        onMouseEnter={() => setBtnState({ hover: true })}
-        onMouseLeave={() => setBtnState({ hover: false })}
+        onMouseEnter={() => setBtnState({ hover: true, ref: "modal" })}
+        onMouseLeave={() => setBtnState({ hover: false, ref: undefined })}
         style={{
           backgroundColor: btnState.hover
             ? themeColors.colorTwo

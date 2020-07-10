@@ -37,7 +37,7 @@ const Modal = ({ style, closeModal, title, text, faIcon }) => {
             : themeColors.colorThree,
         }}
       >
-        let's connect on linkedIn
+        let's connect on Linkedin
       </a>
       <br />
       <button className="modal-close-button" onClick={closeModal}>

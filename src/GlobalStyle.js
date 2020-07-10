@@ -35,6 +35,9 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'IBM Plex Sans', sans-serif;
   }
+  a {
+    text-decoration: none;
+  }
   `;
 // font-family: 'IBM Plex Serif', serif;
 // font-family: 'IBM Plex Mono', monospace;
