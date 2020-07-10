@@ -37,6 +37,7 @@ const Projects = (props) => {
       hosted: hostedURL,
       source: sourceURL,
       portrait: portraitMode,
+      tldr,
     },
     i
   ) => (
@@ -54,6 +55,7 @@ const Projects = (props) => {
       portraitMode={portraitMode ? portraitMode : false}
       toggleOpen={() => toggleOpen(i)}
       isOpen={selected.opened === i}
+      tldr={tldr || undefined}
     />
   );
   const cards = projectList.map((p, i) => renderCard(p, i));

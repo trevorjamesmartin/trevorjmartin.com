@@ -27,14 +27,14 @@ const Modal = ({ style, closeModal, title, text, faIcon }) => {
         rel="noopener noreferrer"
         onMouseEnter={() => setLinkState({ hover: true })}
         onMouseLeave={() => setLinkState({ hover: false })}
+        className="modal-anchor-link"
         style={{
-          textDecoration: "none",
+          textDecoration: "underline",
           letterSpacing: "1px",
           fontSize: "1rem",
           color: linkState.hover
             ? themeColors.colorTwo
             : themeColors.colorThree,
-          textDecoration: "underline",
         }}
       >
         let's connect on linkedIn

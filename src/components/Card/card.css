@@ -35,9 +35,19 @@
   display: flex;
   justify-content: space-evenly;
   font-size: 5rem;
-  /* text-decoration: none; */
 }
 
+.card-project-summary {
+  display: "flex";
+  padding-top: 1rem;
+  padding-left: 12%;
+  padding-right: 12%;
+  justify-content: space-around;
+  align-items: space-around;
+}
+.div-project-summary {
+  align-self: center;
+}
 .card-selected {
   /* filter: brightness(100%); */
   border: 3px solid #ec823a;
@@ -78,7 +88,6 @@
 }
 @media only screen and (max-width: 700px) {
   .card {
-    overflow: hidden;
     border: 1px solid black;
     height: 12rem;
     width: 70vw;
@@ -93,5 +102,12 @@
   }
   .card-selected .card-img {
     filter: brightness(100%);
+  }
+  .card-project-summary {
+    display: "flex";
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-justify: left;
   }
 }

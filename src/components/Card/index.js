@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { themeColors } from "../../GlobalStyle";
 import { animated, useSpring } from "react-spring";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +18,7 @@ const Card = ({
   toggleOpen,
   hostedURL,
   sourceURL,
+  tldr,
 }) => {
   const [linkState, setLinkState] = useState({ url: undefined });
   const snackbar = useSpring({
@@ -25,7 +27,7 @@ const Card = ({
   });
   return (
     <animated.div
-      style={isOpen ? snackbar : {}}
+      style={isOpen ? snackbar : { overflow: "hidden" }}
       className={
         isOpen
           ? "card-open card-selected"
@@ -68,8 +70,8 @@ const Card = ({
               icon={faGithub}
               color={
                 linkState.url === sourceURL
-                  ? `var(--link-hover-color)`
-                  : `var(--link-color)`
+                  ? themeColors.colorFour
+                  : themeColors.colorTwo
               }
             />
           </a>
@@ -85,12 +87,20 @@ const Card = ({
               icon={faGlobe}
               color={
                 linkState.url === hostedURL
-                  ? `var(--link-hover-color)`
-                  : `var(--link-color)`
+                  ? themeColors.colorFour
+                  : themeColors.colorTwo
               }
             />
           </a>
         </span>
+        <h3>About this project</h3>
+        <div className="div-project-summary">
+          <p className="card-project-summary">
+            {tldr
+              ? tldr
+              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis mollis libero, et molestie mauris. Cras eu turpis at eros blandit tempus sed ac arcu. Aliquam sit amet leo sit amet nulla laoreet accumsan vel ac dolor. Nulla vel laoreet ex, ut viverra tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce vel tincidunt metus, in tempor arcu. Maecenas sollicitudin mollis purus in luctus. Sed lorem lorem, elementum sit amet venenatis vitae, viverra non nisl."}
+          </p>
+        </div>
       </div>
     </animated.div>
   );
