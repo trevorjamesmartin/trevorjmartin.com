@@ -12,10 +12,3 @@
   justify-content: space-evenly;
   align-items: center;
 }
-
-.nav-link-text {
-  border-radius: 4px dotted black;
-}
-.nav-link-text a {
-  color: black;
-}
