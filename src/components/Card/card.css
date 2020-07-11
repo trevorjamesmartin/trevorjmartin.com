@@ -12,7 +12,7 @@
   z-index: 1;
 }
 .card-img {
-  filter: brightness(25%);
+  filter: brightness(50%);
   width: 100%;
   max-width: 25vw;
   height: auto;
@@ -50,7 +50,7 @@
 }
 .card-selected {
   /* filter: brightness(100%); */
-  border: 3px solid #ec823a;
+  border: 1px solid #ec823a;
   max-width: 100vw;
   z-index: 1;
 }
@@ -83,8 +83,12 @@
 }
 
 .card-img-portrait {
+  filter: brightness(50%);
   height: 80%;
   width: auto;
+}
+.card-selected .card-img-portrait {
+  filter: brightness(100%);
 }
 @media only screen and (max-width: 700px) {
   .card {
@@ -93,7 +97,7 @@
     width: 70vw;
   }
   .card-selected {
-    border: 3px solid #ec823a;
+    border: 1px solid #ec823a;
   }
   .card-img {
     filter: brightness(25%);
