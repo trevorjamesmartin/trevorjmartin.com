@@ -19,6 +19,7 @@
   width: 100%;
   max-width: 25vw;
   height: auto;
+  border-radius: 0.5rem;
 }
 .card-img-open {
   filter: brightness(100%);
@@ -92,6 +93,7 @@
   filter: brightness(50%);
   height: 80%;
   width: auto;
+  border-radius: 0.5rem;
 }
 .card-selected .card-img-portrait {
   filter: brightness(100%);
