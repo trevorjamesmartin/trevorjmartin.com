@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
+// import "./pageref.css";
 /**
  * Page Reference
  * @param {*} url push to this location on click
@@ -14,11 +14,13 @@ const PageRef = ({ url, text, name, hoverColor, normalColor }) => {
   const [linkState, setLinkState] = useState({ name: undefined });
 
   return (
-    <li
+    <div
       onClick={() => history.push(url)}
       name={name}
       className={
-        linkState.name === name ? "nav-link-text-selected" : "nav-link-text"
+        linkState.name === name
+          ? "nav-link-text-selected page-ref"
+          : "nav-link-text page-ref"
       }
       onMouseEnter={() => setLinkState({ name })}
       onMouseLeave={() => setLinkState({ name: undefined })}
@@ -29,11 +31,21 @@ const PageRef = ({ url, text, name, hoverColor, normalColor }) => {
               borderRadius: "4px",
               padding: "1rem",
               cursor: "pointer",
+              boxShadow: "0 4px 2px -4px black",
+              MozBoxShadow: "0 4px 2px -4px black",
+              WebkitBoxShadow: "0 4px 2px -4px black",
+              minWidth: "100%",
+              marginTop: "2rem",
             }
           : {
               border: `1px solid ${normalColor}`,
               borderRadius: "4px",
               padding: "1rem",
+              boxShadow: "0 4px 2px -4px black",
+              MozBoxShadow: "0 4px 2px -4px black",
+              WebkitBoxShadow: "0 4px 2px -4px black",
+              minWidth: "100%",
+              marginTop: "2rem",
             }
       }
     >
@@ -46,7 +58,7 @@ const PageRef = ({ url, text, name, hoverColor, normalColor }) => {
       >
         {text}
       </p>
-    </li>
+    </div>
   );
 };
 

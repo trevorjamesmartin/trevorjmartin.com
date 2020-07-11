@@ -15,9 +15,7 @@ const Home = (props) => {
       <div className="hello-world">
         <h1>Hello, I'm Trevor Martin.</h1>
         <h2>I'm a full stack web engineer</h2>
-        <br />
-        <br />
-        <ul>
+        <div className="hello-links">
           <PageRef
             name="projects"
             url="/projects"
@@ -25,9 +23,6 @@ const Home = (props) => {
             normalColor="black"
             text="Why not peruse some open source projects I've worked on."
           />
-
-          <br />
-          <br />
           <PageRef
             name="about"
             url="/about"
@@ -35,7 +30,9 @@ const Home = (props) => {
             normalColor="black"
             text="Or find out more about me."
           />
-        </ul>
+          <br />{" "}
+          {/* why does the shadow above depend on some element being here? */}
+        </div>
       </div>
     </div>
   );
