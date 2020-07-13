@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { GlobalStyles } from "./GlobalStyle";
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import { PaletteContext } from "./theme/paletteContext";
+import parsePalette from "./theme/parsePalette";
+// import { GlobalStyles, themeColors } from "./GlobalStyle";
 import { useSpring } from "react-spring";
 import { MenuRight, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -15,61 +17,90 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
 import { Route } from "react-router-dom";
-import LoadPalette from "./colors/colorHunt";
-library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
+import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
+import PalettePicker from "./components/palettePicker";
 
+library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 export default function App() {
-  const [colors, setColors] = useState({});
-  const [theme, setTheme] = useState(192064);
+  // local storage
+  const [appTheme, setAppTheme] = useStateWithLocalStorage("theme");
+  // springs
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
     transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,
   });
 
-  useEffect(
-    (colors) => {
-      const n = theme;
-      const state = colors;
-      const setState = setColors;
-      LoadPalette({
-        n,
-        state,
-        setState,
-      });
+  const pcont = useContext(PaletteContext);
+
+  const setTheme = useCallback(
+    (context_id) => {
+      const c = parsePalette(
+        pcont.palettes.find((pal) => pal.id === context_id)
+      );
+      if (c) {
+        setAppTheme(
+          JSON.stringify({
+            context_id,
+            palette: c,
+          })
+        );
+      }
+      return true;
     },
-    [theme]
+    [pcont.palettes, setAppTheme]
   );
+
+  useEffect(() => {
+    // const defaultPalette = 189688;
+    // console.log(appTheme);
+    const t = JSON.parse(appTheme);
+    console.log(t);
+    if (!t.context_id) {
+      console.log(`setting theme to ${t}`);
+      setTheme(t.context_id);
+    }
+  }, [appTheme, setTheme]);
 
   return (
     <div className="App">
-      <button
-        className={`menu-button menu-button--full${
-          fullMenuVisible ? " menu-button-active" : ""
-        }`}
-        onClick={() => setFullMenuVisible(!fullMenuVisible)}
-      >
-        {fullMenuVisible ? (
-          <FontAwesomeIcon icon={faBars} />
-        ) : (
-          <FontAwesomeIcon icon={faBars} />
-        )}
-      </button>
-
-      <MenuRight />
-      <MenuFull
-        style={fullMenuAnimation}
-        handleClick={() => setFullMenuVisible(!fullMenuVisible)}
-      />
-      <div className="page-container">
-        <Route exact path="/" component={() => <Home text="Home" />} />
-        <Route path="/about" component={() => <About text="About" />} />
-        <Route
-          path="/projects"
-          component={() => <Projects text="Projects" />}
+      <PaletteContext.Provider>
+        <button
+          className={`menu-button menu-button--full${
+            fullMenuVisible ? " menu-button-active" : ""
+          }`}
+          onClick={() => setFullMenuVisible(!fullMenuVisible)}
+        >
+          {fullMenuVisible ? (
+            <FontAwesomeIcon icon={faBars} />
+          ) : (
+            <FontAwesomeIcon icon={faBars} />
+          )}
+        </button>
+        <MenuRight />
+        <MenuFull
+          style={fullMenuAnimation}
+          handleClick={() => setFullMenuVisible(!fullMenuVisible)}
         />
-        <GlobalStyles {...colors[theme]} />
-      </div>
+        <div className="page-container">
+          <Route exact path="/" component={() => <Home text="Home" />} />
+          <Route path="/about" component={() => <About text="About" />} />
+          <Route
+            path="/theme"
+            component={() => (
+              <PalettePicker
+                handleChangeTheme={setTheme}
+                context={pcont}
+                {...JSON.parse(appTheme)}
+              />
+            )}
+          />
+          <Route
+            path="/projects"
+            component={() => <Projects text="Projects" />}
+          />
+        </div>
+      </PaletteContext.Provider>
     </div>
   );
 }

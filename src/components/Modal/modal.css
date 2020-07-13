@@ -1,11 +1,14 @@
 .modal {
+  width: 50vw;
+  height: 400px;
   width: 400px;
-  height: 300px;
+  max-width: 70vw;
+  max-height: 77vw;
   color: #e8e4e1;
   background: #7c3c21;
   padding: 40px;
-  position: absolute;
   z-index: 90;
+  /* position: relative; */
   top: calc(50% - 145px);
   left: calc(50% - 75px);
   display: flex;
