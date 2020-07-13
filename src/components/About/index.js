@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useTransition } from "react-spring";
-import Modal from "../Modal";
+// import { useTransition } from "react-spring";
+// import Modal from "../Modal";
 import {
   faAddressCard,
   faCat,
-  faSmile,
+  // faSmile,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -12,15 +12,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./about.css";
 // import { NavLink } from "react-router-dom";
 export default function About(props) {
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
   const [linkState, setLinkState] = useState({ hover: false, url: "" });
-  const [btnState, setBtnState] = useState({ hover: false });
-  const fadingAnimation = useTransition(modalVisible, null, {
-    from: { opacity: 0, transform: "translateY(-50px)" },
-    enter: { opacity: 1, transform: "translateY(0px)" },
-    leave: { opacity: 0, transform: "translateY(-50px)" },
-  });
-  const modalText = "lets connect on linkedIn";
+  // const [btnState, setBtnState] = useState({ hover: false });
+  // const fadingAnimation = useTransition(modalVisible, null, {
+  //   from: { opacity: 0, transform: "translateY(-50px)" },
+  //   enter: { opacity: 1, transform: "translateY(0px)" },
+  //   leave: { opacity: 0, transform: "translateY(-50px)" },
+  // });
+  // const modalText = "lets connect on linkedIn";
   return (
     <div className="about-page">
       <h1>
@@ -92,7 +92,7 @@ export default function About(props) {
           </p>
         </a>
       </div>
-      <button
+      {/* <button
         className="show-modal-button"
         palette={props.palette}
         onClick={() => setModalVisible(true)}
@@ -109,8 +109,8 @@ export default function About(props) {
         }}
       >
         Contact me
-      </button>
-      {fadingAnimation.map(
+      </button> */}
+      {/* {fadingAnimation.map(
         ({ item, key, props: style }) =>
           item && (
             <Modal
@@ -127,7 +127,7 @@ export default function About(props) {
               )}
             />
           )
-      )}{" "}
+      )}{" "} */}
     </div>
   );
 }
