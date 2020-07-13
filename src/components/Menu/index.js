@@ -22,7 +22,7 @@ export const MenuRight = ({ style }) => (
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--left">
-          <NavLink to="/Projects">
+          <NavLink to="/projects">
             <FontAwesomeIcon icon={faLinux} alt="Projects" />
             <FontAwesomeIcon icon={faPython} alt="Projects" />
             <FontAwesomeIcon icon={faReact} alt="Projects" />
@@ -31,7 +31,7 @@ export const MenuRight = ({ style }) => (
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--left">
-          <NavLink to="/About">
+          <NavLink to="/about">
             <FontAwesomeIcon icon={faAddressCard} alt="About" />
           </NavLink>
         </li>
@@ -49,7 +49,7 @@ export const MenuFull = ({ style, handleClick }) => (
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--full">
-          <NavLink to="/Projects" onClick={handleClick}>
+          <NavLink to="/projects" onClick={handleClick}>
             <FontAwesomeIcon icon={faLinux} alt="Projects" />
             <FontAwesomeIcon icon={faPython} alt="Projects" />
             <FontAwesomeIcon icon={faReact} alt="Projects" />
@@ -58,7 +58,7 @@ export const MenuFull = ({ style, handleClick }) => (
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--full">
-          <NavLink to="/About" onClick={handleClick}>
+          <NavLink to="/about" onClick={handleClick}>
             <FontAwesomeIcon icon={faAddressCard} alt="About" />
           </NavLink>
         </li>

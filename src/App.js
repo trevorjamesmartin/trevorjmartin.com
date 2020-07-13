@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-
+import { Switch } from "react-router-dom";
 import { useSpring } from "react-spring";
 import { MenuRight, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -91,22 +91,24 @@ export default function App() {
         handleClick={() => setFullMenuVisible(!fullMenuVisible)}
       />
       <div className="page-container">
-        <Route exact path="/" component={() => <Home text="Home" />} />
-        <Route path="/about" component={() => <About text="About" />} />
-        <Route
-          path="/theme"
-          component={() => (
-            <PalettePicker
-              handleChangeTheme={setTheme}
-              context={{ palettes }}
-              {...JSON.parse(appTheme)}
-            />
-          )}
-        />
-        <Route
-          path="/projects"
-          component={() => <Projects text="Projects" />}
-        />
+        <Switch>
+          <Route path="/about" component={() => <About text="About" />} />
+          <Route
+            path="/theme"
+            component={() => (
+              <PalettePicker
+                handleChangeTheme={setTheme}
+                context={{ palettes }}
+                {...JSON.parse(appTheme)}
+              />
+            )}
+          />
+          <Route
+            path="/projects"
+            component={() => <Projects text="Projects" />}
+          />
+          <Route exact path="/" component={() => <Home text="Home" />} />
+        </Switch>
       </div>
     </div>
   );
