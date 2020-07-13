@@ -21,9 +21,22 @@ import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
 import PalettePicker from "./components/palettePicker";
 
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
+
+const defaultTheme = JSON.stringify({
+  context_id: 196313,
+  palette: {
+    colorOne: "#ffdecf",
+    colorTwo: "#ba7967",
+    colorThree: "#5e6f64",
+    colorFour: "#3f4441",
+  },
+});
 export default function App() {
   // local storage
-  const [appTheme, setAppTheme] = useStateWithLocalStorage("theme");
+  const [appTheme, setAppTheme] = useStateWithLocalStorage(
+    "theme",
+    defaultTheme
+  );
   // springs
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
   const fullMenuAnimation = useSpring({

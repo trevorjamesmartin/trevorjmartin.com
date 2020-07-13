@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const useStateWithLocalStorage = (localStorageKey) => {
+const useStateWithLocalStorage = (localStorageKey, defaultValue) => {
   const [value, setValue] = useState(
-    localStorage.getItem(localStorageKey) || ""
+    localStorage.getItem(localStorageKey) || defaultValue || ""
   );
 
   useEffect(() => {
