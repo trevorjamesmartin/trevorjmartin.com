@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { animated } from "react-spring";
-import { themeColors } from "../../GlobalStyle";
+// import { themeColors } from "../../GlobalStyle";
 import "./modal.css";
 
 /**
@@ -11,7 +11,7 @@ import "./modal.css";
  * @param {string} text dialog text
  * @param {Function} faIcon function that returns a FontAwesome icon
  */
-const Modal = ({ style, closeModal, title, text, faIcon }) => {
+const Modal = ({ style, closeModal, title, text, faIcon, palette }) => {
   const [linkState, setLinkState] = useState({ hover: false });
 
   return (
@@ -32,9 +32,7 @@ const Modal = ({ style, closeModal, title, text, faIcon }) => {
           textDecoration: "underline",
           letterSpacing: "1px",
           fontSize: "1rem",
-          color: linkState.hover
-            ? themeColors.colorTwo
-            : themeColors.colorThree,
+          color: linkState.hover ? palette.colorTwo : palette.colorThree,
         }}
       >
         let's connect on Linkedin

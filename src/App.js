@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Switch } from "react-router-dom";
 import { useSpring } from "react-spring";
-import { MenuRight, MenuFull } from "./components/Menu";
+import { MenuLeft, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import palettes from "./theme/palettes.json";
@@ -25,12 +25,12 @@ import PalettePicker from "./components/palettePicker";
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 
 const defaultTheme = JSON.stringify({
-  context_id: 196313,
+  context_id: 0,
   palette: {
-    colorOne: "#ffdecf",
-    colorTwo: "#ba7967",
-    colorThree: "#5e6f64",
-    colorFour: "#3f4441",
+    colorOne: "#7c3c21",
+    colorTwo: "#ec823a",
+    colorThree: "#f9c49a",
+    colorFour: "#e8e4e1",
   },
 });
 export default function App() {
@@ -85,14 +85,18 @@ export default function App() {
           <FontAwesomeIcon icon={faBars} />
         )}
       </button>
-      <MenuRight />
+      <MenuLeft {...JSON.parse(appTheme)} />
       <MenuFull
+        {...JSON.parse(appTheme)}
         style={fullMenuAnimation}
         handleClick={() => setFullMenuVisible(!fullMenuVisible)}
       />
       <div className="page-container">
         <Switch>
-          <Route path="/about" component={() => <About text="About" />} />
+          <Route
+            path="/about"
+            component={() => <About text="About" {...JSON.parse(appTheme)} />}
+          />
           <Route
             path="/theme"
             component={() => (
@@ -105,9 +109,15 @@ export default function App() {
           />
           <Route
             path="/projects"
-            component={() => <Projects text="Projects" />}
+            component={() => (
+              <Projects text="Projects" {...JSON.parse(appTheme)} />
+            )}
           />
-          <Route exact path="/" component={() => <Home text="Home" />} />
+          <Route
+            exact
+            path="/"
+            component={() => <Home text="Home" {...JSON.parse(appTheme)} />}
+          />
         </Switch>
       </div>
     </div>

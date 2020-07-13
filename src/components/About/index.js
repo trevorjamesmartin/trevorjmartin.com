@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useTransition } from "react-spring";
-import { themeColors } from "../../GlobalStyle";
 import Modal from "../Modal";
 import {
   faAddressCard,
   faCat,
-  faArrowUp,
+  faSmile,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -43,8 +42,8 @@ export default function About(props) {
             alt="linkedIn"
             color={
               linkState.hover && linkState.ref === "li"
-                ? themeColors.colorTwo
-                : themeColors.colorOne
+                ? props.palette.colorTwo
+                : props.palette.colorOne
             }
           />
           <p
@@ -54,8 +53,8 @@ export default function About(props) {
               fontSize: "1rem",
               color:
                 linkState.hover && linkState.ref === "li"
-                  ? themeColors.colorTwo
-                  : themeColors.colorOne,
+                  ? props.palette.colorTwo
+                  : props.palette.colorOne,
             }}
           >
             Linkedin
@@ -74,8 +73,8 @@ export default function About(props) {
             alt="Octo Cat"
             color={
               linkState.hover && linkState.ref === "gh"
-                ? themeColors.colorTwo
-                : themeColors.colorOne
+                ? props.palette.colorTwo
+                : props.palette.colorOne
             }
           />
           <p
@@ -85,8 +84,8 @@ export default function About(props) {
               fontSize: "1rem",
               color:
                 linkState.hover && linkState.ref === "gh"
-                  ? themeColors.colorTwo
-                  : themeColors.colorOne,
+                  ? props.palette.colorTwo
+                  : props.palette.colorOne,
             }}
           >
             Github
@@ -95,14 +94,18 @@ export default function About(props) {
       </div>
       <button
         className="show-modal-button"
+        palette={props.palette}
         onClick={() => setModalVisible(true)}
         onMouseEnter={() => setBtnState({ hover: true, ref: "modal" })}
         onMouseLeave={() => setBtnState({ hover: false, ref: undefined })}
         style={{
           borderRadius: "4px",
           backgroundColor: btnState.hover
-            ? themeColors.colorTwo
-            : themeColors.colorOne,
+            ? props.palette.colorTwo
+            : props.palette.colorOne,
+          color: btnState.hover
+            ? props.palette.colorOne
+            : props.palette.colorThree,
         }}
       >
         Contact me
@@ -118,7 +121,7 @@ export default function About(props) {
               text={modalText}
               faIcon={() => (
                 <FontAwesomeIcon
-                  icon={faArrowUp}
+                  icon={faSmile}
                   alt="please click on the linkedIn icon above"
                 />
               )}

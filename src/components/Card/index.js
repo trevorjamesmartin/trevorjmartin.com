@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { themeColors } from "../../GlobalStyle";
 import { animated, useSpring } from "react-spring";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -19,15 +18,24 @@ const Card = ({
   hostedURL,
   sourceURL,
   tldr,
+  palette,
 }) => {
   const [linkState, setLinkState] = useState({ url: undefined });
   const snackbar = useSpring({
     opacity: isSelected ? 1 : 0,
     transform: isOpen ? `translateY(0%)` : `translateY(100%)`,
+    backgroundColor: palette.colorOne,
+    color: palette.colorFour,
   });
   return (
     <animated.div
-      style={isOpen ? snackbar : { overflow: "hidden" }}
+      style={
+        isOpen
+          ? snackbar
+          : isSelected
+          ? { border: `1px solid ${palette.colorTwo}` }
+          : { overflow: "hidden" }
+      }
       className={
         isOpen
           ? "card-open card-selected"
@@ -70,8 +78,8 @@ const Card = ({
               icon={faGithub}
               color={
                 linkState.url === sourceURL
-                  ? themeColors.colorFour
-                  : themeColors.colorTwo
+                  ? palette.colorFour
+                  : palette.colorTwo
               }
             />
           </a>
@@ -87,8 +95,8 @@ const Card = ({
               icon={faGlobe}
               color={
                 linkState.url === hostedURL
-                  ? themeColors.colorFour
-                  : themeColors.colorTwo
+                  ? palette.colorFour
+                  : palette.colorTwo
               }
             />
           </a>

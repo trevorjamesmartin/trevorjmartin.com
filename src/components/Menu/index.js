@@ -11,18 +11,34 @@ import {
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./menu.css";
-
-export const MenuRight = ({ style }) => (
-  <animated.div style={style} className="menu menu--left">
+export const MenuLeft = ({ style, context_id, palette }) => (
+  <animated.div
+    style={{
+      ...style,
+      backgroundColor: palette.colorTwo,
+      color: palette.colorOne,
+    }}
+    className="menu menu--left"
+  >
     <nav>
       <ul className="menu-list menu-list--left">
         <li className="menu-list-item menu-list-item--left">
-          <NavLink to="/">
+          <NavLink
+            to="/"
+            style={{ color: palette.colorOne }}
+            activeStyle={{ color: palette.colorThree }}
+            exact
+          >
             <FontAwesomeIcon icon="home" alt="Home" />
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--left">
-          <NavLink to="/projects">
+          <NavLink
+            to="/projects"
+            style={{ color: palette.colorOne }}
+            activeStyle={{ color: palette.colorThree }}
+            exact
+          >
             <FontAwesomeIcon icon={faLinux} alt="Projects" />
             <FontAwesomeIcon icon={faPython} alt="Projects" />
             <FontAwesomeIcon icon={faReact} alt="Projects" />
@@ -31,7 +47,12 @@ export const MenuRight = ({ style }) => (
           </NavLink>
         </li>
         <li className="menu-list-item menu-list-item--left">
-          <NavLink to="/about">
+          <NavLink
+            to="/about"
+            style={{ color: palette.colorOne }}
+            activeStyle={{ color: palette.colorThree }}
+            exact
+          >
             <FontAwesomeIcon icon={faAddressCard} alt="About" />
           </NavLink>
         </li>
@@ -39,8 +60,15 @@ export const MenuRight = ({ style }) => (
     </nav>
   </animated.div>
 );
-export const MenuFull = ({ style, handleClick }) => (
-  <animated.div className="menu menu--full" style={style}>
+export const MenuFull = ({ style, handleClick, context_id, palette }) => (
+  <animated.div
+    className="menu menu--full"
+    style={{
+      ...style,
+      backgroundColor: palette.colorTwo,
+      color: palette.colorOne,
+    }}
+  >
     <nav>
       <ul className="menu-list menu-list--full">
         <li className="menu-list-item menu-list-item--full">

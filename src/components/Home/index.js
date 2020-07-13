@@ -1,5 +1,5 @@
 import React from "react";
-import { themeColors } from "../../GlobalStyle";
+// import { themeColors } from "../../GlobalStyle";
 import { faCat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PageRef from "../PageRef";
@@ -19,15 +19,15 @@ const Home = (props) => {
           <PageRef
             name="projects"
             url="/projects"
-            hoverColor={themeColors.colorTwo}
-            normalColor="black"
+            hoverColor={props.palette.colorTwo}
+            normalColor={props.palette.colorOne}
             text="Why not peruse some open source projects I've worked on."
           />
           <PageRef
             name="about"
             url="/about"
-            hoverColor={themeColors.colorTwo}
-            normalColor="black"
+            hoverColor={props.palette.colorTwo}
+            normalColor={props.palette.colorOne}
             text="Or find out more about me."
           />
           <br />{" "}

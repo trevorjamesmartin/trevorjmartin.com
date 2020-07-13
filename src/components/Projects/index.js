@@ -56,6 +56,7 @@ const Projects = (props) => {
       toggleOpen={() => toggleOpen(i)}
       isOpen={selected.opened === i}
       tldr={tldr || undefined}
+      palette={props.palette}
     />
   );
   const cards = projectList.map((p, i) => renderCard(p, i));
