@@ -40,7 +40,7 @@
     "thumb": "/images/tets.gif",
     "alt": "project screenshot",
     "desc": "Godot",
-    "hosted": "https://master.d3jwcle8ds4dpp.amplifyapp.com/",
+    "hosted": "https://tets.trevorjmartin.com/",
     "source": "https://github.com/debauchery1st/tets",
     "portrait": true,
     "tldr": "Before enrolling in Lambda School I wrote a Tetris-clone in Python with Pygame. I then ported the engine to Kivy for Android compatibility. Soon after that, I found the Godot engine and I just couldn't resist porting it one more time to enable cross-compilation at the click of a button. The source to each port is linked in the README. I suggest you lower the volume when trying the WASM app. It hasn't exactly been polished...yet."
