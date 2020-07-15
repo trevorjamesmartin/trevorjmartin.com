@@ -5,7 +5,7 @@ import { MenuLeft, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import palettes from "./theme/palettes.json";
-import { parsePalette } from "./theme/parsePalette";
+import parsePalette from "./theme/parsePalette";
 
 import About from "./components/About";
 import Home from "./components/Home";
@@ -49,6 +49,7 @@ export default function App() {
   const setTheme = useCallback(
     (context_id) => {
       const c = parsePalette(palettes.find((pal) => pal.id === context_id));
+      console.log(c);
       if (c) {
         setAppTheme(
           JSON.stringify({
@@ -63,10 +64,11 @@ export default function App() {
   );
 
   useEffect(() => {
+    console.log(appTheme);
     const t = JSON.parse(appTheme);
     console.log(t);
     if (!t.context_id) {
-      console.log(`setting theme to ${t}`);
+      console.log(`setting theme to ${JSON.stringify(t)}`);
       setTheme(t.context_id);
     }
   }, [appTheme, setTheme]);
