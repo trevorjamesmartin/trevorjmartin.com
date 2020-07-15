@@ -5,7 +5,7 @@ import { MenuLeft, MenuFull } from "./components/Menu";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import palettes from "./theme/palettes.json";
-import parsePalette from "./theme/parsePalette";
+import { parsePalette } from "./theme/parsePalette";
 
 import About from "./components/About";
 import Home from "./components/Home";
