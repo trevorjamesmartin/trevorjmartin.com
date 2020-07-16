@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ImageSpinner from "../ImageSpinner";
 import "./card.css";
 const Card = ({
   imgURL,
@@ -20,13 +21,20 @@ const Card = ({
   tldr,
   palette,
 }) => {
-  const [linkState, setLinkState] = useState({ url: undefined });
+  const [state, setState] = useState({
+    url: undefined,
+    loading: true,
+  });
   const snackbar = useSpring({
     opacity: isSelected ? 1 : 0,
     transform: isOpen ? `translateY(0%)` : `translateY(100%)`,
     backgroundColor: palette.colorOne,
     color: palette.colorFour,
   });
+  const awesomeSpinner = (
+    <FontAwesomeIcon icon={faSpinner} pulse={true} spin={true} size="4x" />
+  );
+
   return (
     <animated.div
       style={
@@ -47,7 +55,9 @@ const Card = ({
       onClick={() => toggleOpen(cardNumber)}
     >
       <h3>{cardTitle || "Project"}</h3>
-      <img
+      <ImageSpinner
+        src={imgURL}
+        alt={altTag}
         className={
           portraitMode && isOpen
             ? "card-img-open"
@@ -57,9 +67,8 @@ const Card = ({
             ? "card-img-open"
             : "card-img"
         }
-        src={imgURL || "https://placekitten.com/150/77"}
-        alt={altTag || "placeholder"}
-      ></img>
+        customspinner={awesomeSpinner}
+      />
       <p>{cardDesc || ""}</p>
       <div
         className="card-details"
@@ -71,15 +80,13 @@ const Card = ({
             alt="source code"
             target="_blank"
             rel="noopener noreferrer"
-            onMouseOver={() => setLinkState({ url: sourceURL })}
-            onMouseLeave={() => setLinkState({ url: undefined })}
+            onMouseOver={() => setState({ url: sourceURL })}
+            onMouseLeave={() => setState({ url: undefined })}
           >
             <FontAwesomeIcon
               icon={faGithub}
               color={
-                linkState.url === sourceURL
-                  ? palette.colorFour
-                  : palette.colorTwo
+                state.url === sourceURL ? palette.colorFour : palette.colorTwo
               }
             />
           </a>
@@ -88,15 +95,13 @@ const Card = ({
             alt="web application"
             target="_blank"
             rel="noopener noreferrer"
-            onMouseOver={() => setLinkState({ url: hostedURL })}
-            onMouseLeave={() => setLinkState({ url: undefined })}
+            onMouseOver={() => setState({ url: hostedURL })}
+            onMouseLeave={() => setState({ url: undefined })}
           >
             <FontAwesomeIcon
               icon={faGlobe}
               color={
-                linkState.url === hostedURL
-                  ? palette.colorFour
-                  : palette.colorTwo
+                state.url === hostedURL ? palette.colorFour : palette.colorTwo
               }
             />
           </a>

@@ -49,7 +49,6 @@ export default function App() {
   const setTheme = useCallback(
     (context_id) => {
       const c = parsePalette(palettes.find((pal) => pal.id === context_id));
-      console.log(c);
       if (c) {
         setAppTheme(
           JSON.stringify({
@@ -64,11 +63,8 @@ export default function App() {
   );
 
   useEffect(() => {
-    console.log(appTheme);
     const t = JSON.parse(appTheme);
-    console.log(t);
     if (!t.context_id) {
-      console.log(`setting theme to ${JSON.stringify(t)}`);
       setTheme(t.context_id);
     }
   }, [appTheme, setTheme]);
