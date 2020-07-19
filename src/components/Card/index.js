@@ -3,8 +3,10 @@ import { animated, useSpring } from "react-spring";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ImageSpinner from "../ImageSpinner";
+import { ImageSpinner } from "nifty-components";
+
 import "./card.css";
+
 const Card = ({
   imgURL,
   altTag,
