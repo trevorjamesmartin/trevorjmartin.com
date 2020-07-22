@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,15 +57,7 @@ const ListCard = ({
     isSelected,
     isOpen,
   });
-  useEffect(() => {
-    let reset = 0;
-    !state.palette && reset++; // no palette saved to local state
-    !rest.palette && reset++; // no palette in parameters
-    reset.palette && state.palette !== rest.palette && reset++; // new palette
-    reset > 0 &&
-      setState({ ...state, palette: rest.palette || defaultPalette });
-    console.log(`reset : ${reset}`);
-  }, [state, rest.palette]);
+  const palette = rest.palette || defaultPalette;
   return (
     <div
       key={key}
@@ -75,6 +67,7 @@ const ListCard = ({
       onMouseEnter={() => selectCard(cardNumber)}
       onMouseLeave={() => selectCard(undefined)}
       onClick={(e) => {
+        selectCard(cardNumber);
         toggleOpen(cardNumber);
         e.target.scrollIntoView(); // document.querySelector(`#card-${key}`).scrollIntoView();
       }}
@@ -101,9 +94,7 @@ const ListCard = ({
               <FontAwesomeIcon
                 icon={faGithub}
                 color={
-                  state.url === sourceURL
-                    ? state.palette.colorFour
-                    : state.palette.colorTwo
+                  state.url === sourceURL ? palette.colorFour : palette.colorTwo
                 }
               />
             </a>
@@ -118,9 +109,7 @@ const ListCard = ({
               <FontAwesomeIcon
                 icon={faGlobe}
                 color={
-                  state.url === hostedURL
-                    ? state.palette.colorFour
-                    : state.palette.colorTwo
+                  state.url === hostedURL ? palette.colorFour : palette.colorTwo
                 }
               />
             </a>
