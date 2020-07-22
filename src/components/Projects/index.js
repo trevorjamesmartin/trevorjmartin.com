@@ -64,17 +64,17 @@ const Projects = (props) => {
             key
           ) =>
             ListCard({
-              key,
+              key: key + 1,
               title,
               briefdesc,
               cardtags: alt,
               avatar: thumb,
               tldr,
-              toggleOpen: () => toggleOpen(key),
-              selectCard: () => selectCard(key),
-              isSelected: selected.key === key,
-              isOpen: selected.opened === key,
-              cardNumber: key,
+              toggleOpen: () => toggleOpen(key + 1),
+              selectCard: () => selectCard(key + 1),
+              isSelected: selected.key === key + 1,
+              isOpen: selected.opened === key + 1,
+              cardNumber: key + 1,
               palette: props.palette,
               hostedURL,
               sourceURL,
