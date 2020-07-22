@@ -106,19 +106,33 @@ const ListCard = ({
         )}
       </div>
       <main className="nifty-card-main list-view" style={mainStyle}>
-        <p style={{ padding: isOpen ? "0 2ch" : "0 1ch", fontWeight: "bold" }}>
+        <p
+          style={{
+            padding: isOpen ? "0 2ch" : "0 0",
+            // fontWeight: "bold",
+            fontWeight: 500,
+            fontFamily: "'Fira Code', monospace",
+          }}
+        >
           {title || "Hello World"}
         </p>
         <p
           style={{
-            padding: "0 2ch",
-            fontWeight: "lighter",
+            padding: isOpen ? "0 2ch" : "0 0",
+            fontSize: "1rem",
+            fontFamily: "'Fira Code', monospace",
             fontStyle: "italic",
           }}
         >
           {briefdesc || "somewhere, on earth"}
         </p>
-        <p style={{ padding: "0 2ch", color: "darkred" }}>
+        <p
+          style={{
+            fontFamily: "'Montserrat', sans-serif",
+            padding: isOpen ? "0 2ch" : "0 0",
+            color: "darkslategrey",
+          }}
+        >
           {isOpen ? tldr || "#JS, #React" : "..."}
         </p>{" "}
       </main>
