@@ -36,13 +36,24 @@ const defaultTheme = JSON.stringify({
     colorFour: "#e8e4e1",
   },
 });
+
+// const rightToLeft = {
+//   from: { opacity: 0, transform: "translate3d(100vw, 0, 0)" },
+//   enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+//   leave: { opacity: 0, transform: "translate3d(-20vw, 0, 0)" },
+// };
+const leftToRight = {
+  from: { opacity: 0, transform: "translate3d(-100vw, 0, 0)" },
+  enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+  leave: { opacity: 0, transform: "translate3d(20vw, 0, 0)" },
+};
 export default function App() {
   const location = useLocation();
-  const transitions = useTransition(location, (location) => location.pathname, {
-    from: { opacity: 0, transform: "translate3d(100vw, 0, 0)" },
-    enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
-    leave: { opacity: 0, transform: "translate3d(-20vw, 0, 0)" },
-  });
+  const transitions = useTransition(
+    location,
+    (location) => location.pathname,
+    leftToRight
+  );
   // local storage
   const [appTheme, setAppTheme] = useStateWithLocalStorage(
     "theme",
