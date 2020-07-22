@@ -65,11 +65,16 @@ function ListCardStyle({ palette, portrait, rest, isSelected, isOpen }) {
     paddingTop: "1ch",
     paddingBottom: "1ch",
     transition: "all .5s ease",
-
     ...rest.imgStyle,
+    display: "flex",
   };
-  const imgFrameSytle = {
-    maxWidth: isOpen ? "100%" : "10rem",
+  const imgFrameStyle = {
+    maxWidth: isOpen ? "100%" : portrait ? "20rem" : "10rem",
+    // width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    textAlign: "center",
+    alignItems: "center",
     transition: "all .5s ease",
   };
   return {
@@ -80,7 +85,7 @@ function ListCardStyle({ palette, portrait, rest, isSelected, isOpen }) {
     expandedStyle,
     linkStyle,
     imgStyle,
-    imgFrameSytle,
+    imgFrameStyle,
   };
 }
 

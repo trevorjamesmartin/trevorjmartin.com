@@ -3,10 +3,15 @@ import React, { useState } from "react";
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 // styles
 import ListCardStyle from "./ListCardStyle";
+import { ImageSpinner } from "nifty-components";
+
+const awesomeSpin = (
+  <FontAwesomeIcon icon={faSpinner} pulse={true} spin={true} size="4x" />
+);
 
 // card listview
 const ListCard = ({
@@ -39,7 +44,7 @@ const ListCard = ({
     expandedStyle,
     linkStyle,
     imgStyle,
-    imgFrameSytle,
+    imgFrameStyle,
   } = ListCardStyle({ palette, portrait, rest, isSelected, isOpen });
   return (
     <div
@@ -55,11 +60,12 @@ const ListCard = ({
       }}
     >
       <div className="nifty-card-left list-view" style={leftStyle}>
-        <div style={imgFrameSytle}>
-          <img
+        <div style={imgFrameStyle}>
+          <ImageSpinner
             style={imgStyle}
             src={avatar || "https://avatarfiles.alphacoders.com/289/289.jpg"}
             alt="avatar"
+            customspinner={awesomeSpin}
           />
         </div>
         {isOpen ? (
