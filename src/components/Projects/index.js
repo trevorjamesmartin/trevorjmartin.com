@@ -8,7 +8,7 @@ import {
   faHtml5,
   faLinux,
 } from "@fortawesome/free-brands-svg-icons";
-import "./projects.css";
+// import "./projects.css";
 // import { Card } from "../Card";
 import { ListCard, ListCardTable } from "../Card/ListCard";
 import projectList from "./projects.json";
@@ -32,7 +32,7 @@ const Projects = (props) => {
 
   // console.log(cards);
   return (
-    <div className="projects-page">
+    <div className="page">
       <h1>
         <FontAwesomeIcon icon={faLinux} alt="Projects" />
         <FontAwesomeIcon icon={faPython} alt="Projects" />

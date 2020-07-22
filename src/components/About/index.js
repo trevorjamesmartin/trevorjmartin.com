@@ -22,7 +22,7 @@ export default function About(props) {
   // });
   // const modalText = "lets connect on linkedIn";
   return (
-    <div className="about-page">
+    <div className="page">
       <h1>
         <FontAwesomeIcon icon={faAddressCard} alt="Home" />
       </h1>

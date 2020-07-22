@@ -13,12 +13,12 @@
   width: 200px;
 }
 
-.about-page {
+/* .about-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-}
+} */
 
 .about-details {
   /* --link-hover-color: #ec823a;

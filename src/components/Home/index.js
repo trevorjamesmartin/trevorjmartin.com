@@ -6,7 +6,7 @@ import PageRef from "../PageRef";
 import "./home.css";
 const Home = (props) => {
   return (
-    <div className="home-page">
+    <div className="page">
       <h1>
         <FontAwesomeIcon icon="home" alt="Home" />
       </h1>
