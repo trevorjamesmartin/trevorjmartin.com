@@ -9,7 +9,8 @@ import {
   faLinux,
 } from "@fortawesome/free-brands-svg-icons";
 import "./projects.css";
-import { Card, CardTable } from "../Card";
+// import { Card } from "../Card";
+import { ListCard, ListCardTable } from "../Card/ListCard";
 import projectList from "./projects.json";
 const Projects = (props) => {
   const [selected, setSelected] = useState({
@@ -28,38 +29,8 @@ const Projects = (props) => {
       }
     }
   };
-  const renderCard = (
-    {
-      title: cardTitle,
-      thumb: imgURL,
-      alt: altTag,
-      desc: cardDesc,
-      hosted: hostedURL,
-      source: sourceURL,
-      portrait: portraitMode,
-      tldr,
-    },
-    i
-  ) => (
-    <Card
-      key={i}
-      cardTitle={cardTitle}
-      imgURL={imgURL}
-      altTag={altTag}
-      cardDesc={cardDesc}
-      selectCard={() => selectCard(i)}
-      isSelected={selected.key === i}
-      cardNumber={i}
-      hostedURL={hostedURL}
-      sourceURL={sourceURL}
-      portraitMode={portraitMode ? portraitMode : false}
-      toggleOpen={() => toggleOpen(i)}
-      isOpen={selected.opened === i}
-      tldr={tldr || undefined}
-      palette={props.palette}
-    />
-  );
-  const cards = projectList.map((p, i) => renderCard(p, i));
+
+  // console.log(cards);
   return (
     <div className="projects-page">
       <h1>
@@ -71,7 +42,46 @@ const Projects = (props) => {
       </h1>
       <FontAwesomeIcon icon={faCat} />
       {props.text}
-      <CardTable cards={cards} cardState={selected}></CardTable>
+      <ListCardTable
+        style={{
+          maxWidth: "42rem",
+          display: "flex",
+          flexDirection: "column",
+          margin: "2ch",
+        }}
+        cards={projectList.map(
+          (
+            {
+              title,
+              thumb,
+              alt,
+              desc: briefdesc,
+              hosted: hostedURL,
+              source: sourceURL,
+              portrait,
+              tldr,
+            },
+            key
+          ) =>
+            ListCard({
+              key,
+              title,
+              briefdesc,
+              cardtags: alt,
+              avatar: thumb,
+              tldr,
+              toggleOpen: () => toggleOpen(key),
+              selectCard: () => selectCard(key),
+              isSelected: selected.key === key,
+              isOpen: selected.opened === key,
+              cardNumber: key,
+              palette: props.palette,
+              hostedURL,
+              sourceURL,
+              portrait,
+            })
+        )}
+      />
     </div>
   );
 };
