@@ -42,9 +42,9 @@ function ListCardStyle({ palette, portrait, rest, isSelected, isOpen }) {
   const expandedStyle = {
     ...parentStyle,
     height: "200%",
-    top: 0,
-    margin: "2ch 0 ",
-    position: "fixed",
+    // top: 0,
+    // margin: "2ch 0 ",
+    // position: "fixed",
     // zIndex: 100,
     maxWidth: "42rem",
     ...rest.expandedStyle,

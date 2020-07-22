@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,12 @@ const awesomeSpin = (
   <FontAwesomeIcon icon={faSpinner} pulse={true} spin={true} size="4x" />
 );
 
+const defaultPalette = {
+  colorOne: "#7c3c21",
+  colorTwo: "#ec823a",
+  colorThree: "#f9c49a",
+  colorFour: "#e8e4e1",
+};
 // card listview
 const ListCard = ({
   key,
@@ -21,7 +27,6 @@ const ListCard = ({
   // cardtags,
   avatar,
   portrait,
-  palette,
   tldr,
   isOpen,
   toggleOpen,
@@ -45,7 +50,22 @@ const ListCard = ({
     linkStyle,
     imgStyle,
     imgFrameStyle,
-  } = ListCardStyle({ palette, portrait, rest, isSelected, isOpen });
+  } = ListCardStyle({
+    palette: rest.palette || defaultPalette,
+    portrait,
+    rest,
+    isSelected,
+    isOpen,
+  });
+  useEffect(() => {
+    let reset = 0;
+    !state.palette && reset++; // no palette saved to local state
+    !rest.palette && reset++; // no palette in parameters
+    reset.palette && state.palette !== rest.palette && reset++; // new palette
+    reset > 0 &&
+      setState({ ...state, palette: rest.palette || defaultPalette });
+    console.log(`reset : ${reset}`);
+  }, [state, rest.palette]);
   return (
     <div
       key={key}
@@ -81,7 +101,9 @@ const ListCard = ({
               <FontAwesomeIcon
                 icon={faGithub}
                 color={
-                  state.url === sourceURL ? palette.colorFour : palette.colorTwo
+                  state.url === sourceURL
+                    ? state.palette.colorFour
+                    : state.palette.colorTwo
                 }
               />
             </a>
@@ -96,7 +118,9 @@ const ListCard = ({
               <FontAwesomeIcon
                 icon={faGlobe}
                 color={
-                  state.url === hostedURL ? palette.colorFour : palette.colorTwo
+                  state.url === hostedURL
+                    ? state.palette.colorFour
+                    : state.palette.colorTwo
                 }
               />
             </a>
