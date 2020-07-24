@@ -1,10 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 // import { themeColors } from "../../GlobalStyle";
 import { faCat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PageRef from "../PageRef";
 import "./home.css";
 const Home = (props) => {
+  const history = useHistory();
   return (
     <div className="page">
       <h1>
@@ -19,12 +22,14 @@ const Home = (props) => {
           <PageRef
             name="projects"
             url="/projects"
+            history={history}
             hoverColor={props.palette.colorTwo}
             normalColor={props.palette.colorOne}
             text="Why not peruse some open source projects I've worked on."
           />
           <PageRef
             name="about"
+            history={history}
             url="/about"
             hoverColor={props.palette.colorTwo}
             normalColor={props.palette.colorOne}
