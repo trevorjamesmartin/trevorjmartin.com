@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 // import "./pageref.css";
 /**
  * Page Reference
@@ -9,8 +8,9 @@ import { useHistory } from "react-router-dom";
  * @param {*} hoverColor color when mouse is over the page ref
  * @param {*} normalColor color
  */
-const PageRef = ({ url, text, name, hoverColor, normalColor }) => {
-  const history = useHistory();
+const PageRef = ({ url, text, name, hoverColor, normalColor, ...props }) => {
+  // const history = useHistory();
+  const history = props.history;
   const [linkState, setLinkState] = useState({ name: undefined });
 
   return (
