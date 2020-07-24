@@ -23,7 +23,11 @@ const Projects = (props) => {
       </h1>
       <FontAwesomeIcon icon={faCat} />
       {props.text}
-      <GithubCards projectlist={projectList} palette={props.palette} />
+      <GithubCards
+        width="55ch"
+        projectlist={projectList}
+        palette={props.palette}
+      />
     </div>
   );
 };
