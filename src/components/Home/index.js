@@ -7,10 +7,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PageRef from "../PageRef";
 import "./home.css";
 const Home = (props) => {
+  // borderColorSelected="whitesmoke"
+  // borderColorNormal="whitesmoke"
+  // backgroundColor="whitesmoke"
+  // titleColor="darkgrey"
+  // textColor="darkslategrey"
+  const { borderColorSelected, textColor } = props.theme_options;
   const pageRefProps = {
     history: useHistory(),
-    hovercolor: props.palette.colorTwo,
-    normalcolor: props.palette.colorOne,
+    hovercolor: borderColorSelected || props.palette.colorTwo,
+    normalcolor: textColor,
     globalStyle: { maxWidth: "40ch" },
   };
   return (

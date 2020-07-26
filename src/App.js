@@ -26,6 +26,16 @@ import PalettePicker from "./components/palettePicker";
 import "./App.css";
 
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
+
+const theme_style = {
+  borderColorNormal: "whitesmoke",
+  cardBackgroundColor: "white",
+  backgroundColor: "whitesmoke",
+  borderColorSelected: "whitesmoke",
+  titleColor: "darkgrey",
+  textColor: "darkslategrey",
+};
+
 const defaultTheme = JSON.stringify({
   context_id: 0,
   palette: {
@@ -35,6 +45,7 @@ const defaultTheme = JSON.stringify({
     colorFour: "#e8e4e1",
   },
   theme_options: "a",
+  theme_style,
 });
 
 // const rightToLeft = {
@@ -82,6 +93,7 @@ export default function App() {
           JSON.stringify({
             context_id,
             palette: c,
+            theme_style: newTheme.theme_style,
             theme_options: newTheme.theme_options,
           })
         );
