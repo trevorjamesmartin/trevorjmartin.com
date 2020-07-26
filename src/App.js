@@ -35,7 +35,7 @@ const theme_style = {
   titleColor: "darkgrey",
   textColor: "darkslategrey",
 };
-
+const theme_options = "a";
 const defaultTheme = JSON.stringify({
   context_id: 0,
   palette: {
@@ -44,7 +44,7 @@ const defaultTheme = JSON.stringify({
     colorThree: "#f9c49a",
     colorFour: "#e8e4e1",
   },
-  theme_options: "a",
+  theme_options,
   theme_style,
 });
 
@@ -86,15 +86,14 @@ export default function App() {
   // console.log(location);
   const setTheme = useCallback(
     (context_id) => {
-      const newTheme = JSON.parse(appTheme);
+      const newTheme = { theme_options, theme_style, ...JSON.parse(appTheme) };
       const c = parsePalette(palettes.find((pal) => pal.id === context_id));
       if (c) {
         setAppTheme(
           JSON.stringify({
+            ...newTheme,
             context_id,
             palette: c,
-            theme_style: newTheme.theme_style,
-            theme_options: newTheme.theme_options,
           })
         );
       }
@@ -104,12 +103,15 @@ export default function App() {
   );
 
   useEffect(() => {
+    console.log("use-effect");
     const t = JSON.parse(appTheme);
-    if (!t.context_id) {
+    if (!t.context_id || !t.theme_options || !t.theme_style) {
       setTheme(t.context_id);
     }
   }, [appTheme, setTheme]);
+
   // const defaultProps = {...JSON.parse(appTheme)}
+  // setTheme(JSON.parse(appTheme).context_id);
   return (
     <div className="App">
       <div className="nav">

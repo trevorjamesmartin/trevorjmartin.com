@@ -12,7 +12,8 @@ const Home = (props) => {
   // backgroundColor="whitesmoke"
   // titleColor="darkgrey"
   // textColor="darkslategrey"
-  const { borderColorSelected, textColor } = props.theme_options;
+  const { theme_options } = props;
+  const { borderColorSelected, textColor } = theme_options ? theme_options : {};
   const pageRefProps = {
     history: useHistory(),
     hovercolor: borderColorSelected || props.palette.colorTwo,
@@ -42,8 +43,6 @@ const Home = (props) => {
             text="Or find out more about me."
             {...pageRefProps}
           />
-          <br />{" "}
-          {/* why does the shadow above depend on some element being here? */}
         </div>
       </div>
     </div>
