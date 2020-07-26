@@ -27,6 +27,11 @@ const Projects = (props) => {
         width="55ch"
         projectlist={projectList}
         palette={props.palette}
+        // borderColorSelected="whitesmoke"
+        borderColorNormal="whitesmoke"
+        // backgroundColor="whitesmoke"
+        // titleColor="darkgrey"
+        // textColor="darkslategrey"
       />
     </div>
   );
