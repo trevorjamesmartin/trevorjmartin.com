@@ -11,7 +11,7 @@ import {
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./menu.css";
-export const MenuLeft = ({ style, context_id, palette }) => (
+export const MenuLeft = ({ style, context_id, palette, theme_options }) => (
   <animated.div
     style={{
       ...style,
@@ -56,6 +56,32 @@ export const MenuLeft = ({ style, context_id, palette }) => (
             <FontAwesomeIcon icon={faAddressCard} alt="About" />
           </NavLink>
         </li>
+        {theme_options === "cats" ? (
+          <>
+            <li className="menu-list-item menu-list-item--left">
+              <NavLink
+                to="/theme"
+                style={{ color: palette.colorOne }}
+                activeStyle={{ color: palette.colorThree }}
+                exact
+              >
+                theme
+              </NavLink>
+            </li>
+            <li className="menu-list-item menu-list-item--left">
+              <NavLink
+                to="/readme"
+                style={{ color: palette.colorOne }}
+                activeStyle={{ color: palette.colorThree }}
+                exact
+              >
+                readme
+              </NavLink>
+            </li>
+          </>
+        ) : (
+          ""
+        )}
       </ul>
     </nav>
   </animated.div>

@@ -19,14 +19,13 @@ import { MenuLeft, MenuFull } from "./components/Menu";
 import About from "./components/About";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
-
+import ReadMe from "./components/ReadMe";
 import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
 import PalettePicker from "./components/palettePicker";
 
 import "./App.css";
 
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
-
 const defaultTheme = JSON.stringify({
   context_id: 0,
   palette: {
@@ -35,6 +34,7 @@ const defaultTheme = JSON.stringify({
     colorThree: "#f9c49a",
     colorFour: "#e8e4e1",
   },
+  theme_options: "a",
 });
 
 // const rightToLeft = {
@@ -42,17 +42,24 @@ const defaultTheme = JSON.stringify({
 //   enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
 //   leave: { opacity: 0, transform: "translate3d(-20vw, 0, 0)" },
 // };
-const leftToRight = {
-  from: { opacity: 0, transform: "translate3d(-100vw, 0, 0)" },
-  enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
-  leave: { opacity: 0, transform: "translate3d(20vw, 0, 0)" },
+// const leftToRight = {
+//   from: { opacity: 0, transform: "translate3d(-100vw, 0, 0)" },
+//   enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+//   leave: { opacity: 0, transform: "translate3d(20vw, 0, 0)" },
+// };
+
+const fadeIn = {
+  from: { opacity: 0, transform: "translate(0, 0, 0)", trail: 10 },
+  enter: { opacity: 1, transform: "translate(0, 0, 0)", trail: 10 },
+  leave: { opacity: 0, transform: "translate(0, 0, 0)", trail: 10 },
+  config: { duration: 1234 },
 };
 export default function App() {
   const location = useLocation();
   const transitions = useTransition(
     location,
     (location) => location.pathname,
-    leftToRight
+    fadeIn
   );
   // local storage
   const [appTheme, setAppTheme] = useStateWithLocalStorage(
@@ -65,21 +72,23 @@ export default function App() {
     opacity: fullMenuVisible ? 1 : 0,
     transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,
   });
-  console.log(location);
+  // console.log(location);
   const setTheme = useCallback(
     (context_id) => {
+      const newTheme = JSON.parse(appTheme);
       const c = parsePalette(palettes.find((pal) => pal.id === context_id));
       if (c) {
         setAppTheme(
           JSON.stringify({
             context_id,
             palette: c,
+            theme_options: newTheme.theme_options,
           })
         );
       }
       return true;
     },
-    [setAppTheme]
+    [appTheme, setAppTheme]
   );
 
   useEffect(() => {
@@ -88,7 +97,7 @@ export default function App() {
       setTheme(t.context_id);
     }
   }, [appTheme, setTheme]);
-
+  // const defaultProps = {...JSON.parse(appTheme)}
   return (
     <div className="App">
       <div className="nav">
@@ -118,29 +127,91 @@ export default function App() {
               <Route
                 path="/about"
                 component={() => (
-                  <About text="About" {...JSON.parse(appTheme)} />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <About text="About" {...JSON.parse(appTheme)} />
+                  </div>
+                )}
+              />
+              <Route
+                path="/readme"
+                component={() => (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <ReadMe
+                      repoURL="https://github.com/debauchery1st/debauchery1st"
+                      {...JSON.parse(appTheme)}
+                      style={{
+                        display: "block",
+                        maxWidth: "60ch",
+                        textAlign: "left",
+                        margin: "1rem",
+                      }}
+                    />
+                  </div>
                 )}
               />
               <Route
                 path="/theme"
                 component={() => (
-                  <PalettePicker
-                    handleChangeTheme={setTheme}
-                    context={{ palettes }}
-                    {...JSON.parse(appTheme)}
-                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <PalettePicker
+                      handleChangeTheme={setTheme}
+                      context={{ palettes }}
+                      {...JSON.parse(appTheme)}
+                    />
+                  </div>
                 )}
               />
               <Route
                 path="/projects"
                 component={() => (
-                  <Projects text="Projects" {...JSON.parse(appTheme)} />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <Projects text="Projects" {...JSON.parse(appTheme)} />
+                  </div>
                 )}
               />
               <Route
                 exact
                 path="/"
-                component={() => <Home text="Home" {...JSON.parse(appTheme)} />}
+                component={() => (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <Home text="Home" {...JSON.parse(appTheme)} />
+                  </div>
+                )}
               />
             </Switch>
           </animated.div>

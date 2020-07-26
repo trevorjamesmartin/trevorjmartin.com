@@ -7,7 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PageRef from "../PageRef";
 import "./home.css";
 const Home = (props) => {
-  const history = useHistory();
+  const pageRefProps = {
+    history: useHistory(),
+    hovercolor: props.palette.colorTwo,
+    normalcolor: props.palette.colorOne,
+    globalStyle: { maxWidth: "40ch" },
+  };
   return (
     <div className="page">
       <h1>
@@ -22,18 +27,14 @@ const Home = (props) => {
           <PageRef
             name="projects"
             url="/projects"
-            history={history}
-            hoverColor={props.palette.colorTwo}
-            normalColor={props.palette.colorOne}
             text="Why not peruse some open source projects I've worked on."
+            {...pageRefProps}
           />
           <PageRef
             name="about"
-            history={history}
             url="/about"
-            hoverColor={props.palette.colorTwo}
-            normalColor={props.palette.colorOne}
             text="Or find out more about me."
+            {...pageRefProps}
           />
           <br />{" "}
           {/* why does the shadow above depend on some element being here? */}
