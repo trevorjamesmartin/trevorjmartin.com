@@ -28,10 +28,10 @@ const Projects = (props) => {
         projectlist={projectList}
         palette={props.palette}
         // borderColorSelected="whitesmoke"
-        borderColorNormal="whitesmoke"
+        borderColorNormal={props.theme_style.backgroundColor}
+        backgroundColor={props.theme_style.cardBackgroundColor}
         // backgroundColor="whitesmoke"
-        // titleColor="darkgrey"
-        // textColor="darkslategrey"
+        // titleColor={props.theme_style.titleColor}
       />
     </div>
   );

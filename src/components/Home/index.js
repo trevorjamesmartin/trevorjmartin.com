@@ -12,14 +12,15 @@ const Home = (props) => {
   // backgroundColor="whitesmoke"
   // titleColor="darkgrey"
   // textColor="darkslategrey"
-  const { theme_options } = props;
-  const { borderColorSelected, textColor } = theme_options ? theme_options : {};
+  const { theme_style } = props;
+  const { textColor } = theme_style || {};
   const pageRefProps = {
     history: useHistory(),
-    hovercolor: borderColorSelected || props.palette.colorTwo,
+    hovercolor: props.palette.colorTwo,
     normalcolor: textColor,
     globalStyle: { maxWidth: "40ch" },
   };
+  console.log(props);
   return (
     <div className="page">
       <h1>

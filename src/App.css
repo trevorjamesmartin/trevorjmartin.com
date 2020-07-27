@@ -9,21 +9,6 @@
   z-index: 1;
 }
 
-.fade-appear-active,
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 300ms linear 150ms;
-}
-
-.fade-exit {
-  opacity: 1;
-}
-
-.fade-exit.fade-exit-active {
-  opacity: 0;
-  transition: opacity 150ms linear;
-}
-
 .menu-button--full {
   top: 40px;
   right: 20px;
@@ -106,6 +91,19 @@
     left: calc(50% - 200px);
   }
 }
+
+/* 
+  oddly enough, using className 
+  doesn't center the concerning pages
+  JSS does.
+*/
+/* 
+.route-style {
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  width: "100%";
+} */
 
 @media screen and (min-width: 900px) {
   .menu-button--full {

@@ -22,20 +22,33 @@ import Projects from "./components/Projects";
 import ReadMe from "./components/ReadMe";
 import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
 import PalettePicker from "./components/palettePicker";
-
+import { themeIt } from "./theme/parsePalette";
 import "./App.css";
-
+import light_base from "./theme/light_base.json";
+import dark_base from "./theme/dark_base.json";
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 
-const theme_style = {
-  borderColorNormal: "whitesmoke",
-  cardBackgroundColor: "white",
-  backgroundColor: "whitesmoke",
-  borderColorSelected: "whitesmoke",
-  titleColor: "darkgrey",
-  textColor: "darkslategrey",
+const light_style = {
+  ...light_base,
+  borderColorNormal: light_base.background || "whitesmoke",
+  cardBackgroundColor: light_base.surface,
+  backgroundColor: light_base.background || "whitesmoke",
+  borderColorSelected: light_base.background || "whitesmoke",
+  titleColor: light_base.onBackground,
+  textColor: light_base.onBackground,
 };
-const theme_options = "a";
+const dark_style = {
+  ...dark_base,
+  borderColorNormal: dark_base.background || "#2b2727",
+  cardBackgroundColor: dark_base.surface || "slategrey",
+  backgroundColor: dark_base.background || "#2b2727",
+  borderColorSelected: dark_base.background || "#2b2727",
+  titleColor: dark_base.onBackground || "white",
+  textColor: dark_base.onBackground || "whitesmoke",
+};
+
+const theme_options = "b";
+const theme_style = theme_options[0] === "a" ? dark_style : light_style;
 const defaultTheme = JSON.stringify({
   context_id: 0,
   palette: {
@@ -60,9 +73,9 @@ const defaultTheme = JSON.stringify({
 // };
 
 const fadeIn = {
-  from: { opacity: 0, transform: "translate(0, 0, 0)", trail: 10 },
-  enter: { opacity: 1, transform: "translate(0, 0, 0)", trail: 10 },
-  leave: { opacity: 0, transform: "translate(0, 0, 0)", trail: 10 },
+  from: { opacity: 0, transform: "translate(0, 0, 0)" },
+  enter: { opacity: 1, transform: "translate(0, 0, 0)" },
+  leave: { opacity: 0, transform: "translate(0, 0, 0)" },
   config: { duration: 1234 },
 };
 export default function App() {
@@ -101,17 +114,23 @@ export default function App() {
     },
     [appTheme, setAppTheme]
   );
-
+  const routeStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+  };
   useEffect(() => {
     console.log("use-effect");
     const t = JSON.parse(appTheme);
+    // const palette = JSON.parse(t.palette);
+    console.log(themeIt({ ...t }));
+    document.body.style.backgroundColor = t.theme_style.backgroundColor;
+    document.body.style.color = t.theme_style.textColor;
     if (!t.context_id || !t.theme_options || !t.theme_style) {
       setTheme(t.context_id);
     }
   }, [appTheme, setTheme]);
-
-  // const defaultProps = {...JSON.parse(appTheme)}
-  // setTheme(JSON.parse(appTheme).context_id);
   return (
     <div className="App">
       <div className="nav">
@@ -141,14 +160,7 @@ export default function App() {
               <Route
                 path="/about"
                 component={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "100%",
-                    }}
-                  >
+                  <div style={routeStyle}>
                     <About text="About" {...JSON.parse(appTheme)} />
                   </div>
                 )}
@@ -156,14 +168,7 @@ export default function App() {
               <Route
                 path="/readme"
                 component={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "100%",
-                    }}
-                  >
+                  <div style={routeStyle}>
                     <ReadMe
                       repoURL="https://github.com/debauchery1st/debauchery1st"
                       {...JSON.parse(appTheme)}
@@ -178,16 +183,27 @@ export default function App() {
                 )}
               />
               <Route
+                path="/testing"
+                component={() => (
+                  <div style={routeStyle}>
+                    <ReadMe
+                      repoURL="https://github.com/debauchery1st/trevorjmartin.com"
+                      readmeURL="https://raw.githubusercontent.com/debauchery1st/trevorjmartin.com/master/src/components/README.md"
+                      {...JSON.parse(appTheme)}
+                      style={{
+                        display: "block",
+                        maxWidth: "60ch",
+                        textAlign: "left",
+                        margin: "1rem",
+                      }}
+                    />
+                  </div>
+                )}
+              />
+              <Route
                 path="/theme"
                 component={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "100%",
-                    }}
-                  >
+                  <div style={routeStyle}>
                     <PalettePicker
                       handleChangeTheme={setTheme}
                       context={{ palettes }}
@@ -199,14 +215,7 @@ export default function App() {
               <Route
                 path="/projects"
                 component={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "100%",
-                    }}
-                  >
+                  <div style={routeStyle}>
                     <Projects text="Projects" {...JSON.parse(appTheme)} />
                   </div>
                 )}
@@ -215,14 +224,7 @@ export default function App() {
                 exact
                 path="/"
                 component={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      width: "100%",
-                    }}
-                  >
+                  <div style={routeStyle}>
                     <Home text="Home" {...JSON.parse(appTheme)} />
                   </div>
                 )}
