@@ -22,7 +22,6 @@ import Projects from "./components/Projects";
 import ReadMe from "./components/ReadMe";
 import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
 import PalettePicker from "./components/palettePicker";
-import { themeIt } from "./theme/parsePalette";
 import "./App.css";
 import light_base from "./theme/light_base.json";
 import dark_base from "./theme/dark_base.json";
@@ -121,15 +120,18 @@ export default function App() {
     width: "100%",
   };
   useEffect(() => {
-    console.log("use-effect");
     const t = JSON.parse(appTheme);
     // const palette = JSON.parse(t.palette);
-    console.log(themeIt({ ...t }));
     document.body.style.backgroundColor = t.theme_style.backgroundColor;
     document.body.style.color = t.theme_style.textColor;
-    if (!t.context_id || !t.theme_options || !t.theme_style) {
-      setTheme(t.context_id);
-    }
+    // if (
+    //   !t.context_id ||
+    //   !t.theme_options ||
+    //   !t.theme_style ||
+    //   (t.theme_style && !t.theme_style.primary)
+    // ) {
+    setTheme(t.context_id);
+    // }
   }, [appTheme, setTheme]);
   return (
     <div className="App">
