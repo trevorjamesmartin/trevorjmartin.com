@@ -12,6 +12,20 @@ import { GithubCards } from "nifty-components";
 
 import projectList from "./projects.json";
 const Projects = (props) => {
+  // console.log("props", props);
+  const {
+    primary,
+    primaryVariant,
+    secondary,
+    secondaryVariant,
+  } = props.palette;
+  const palette = {
+    colorOne: primary,
+    colorTwo: primaryVariant,
+    colorThree: secondary,
+    colorFour: secondaryVariant,
+  };
+  // console.log({ primary, primaryVariant, secondary, secondaryVariant });
   return (
     <div className="page">
       <h1>
@@ -26,12 +40,12 @@ const Projects = (props) => {
       <GithubCards
         width="55ch"
         projectlist={projectList}
-        palette={props.palette}
-        // borderColorSelected="whitesmoke"
-        borderColorNormal={props.theme_style.backgroundColor}
-        backgroundColor={props.theme_style.cardBackgroundColor}
-        // backgroundColor="whitesmoke"
-        // titleColor={props.theme_style.titleColor}
+        palette={palette}
+        borderColorSelected={props.active_theme.primary}
+        borderColorNormal={props.active_theme.background}
+        backgroundColor={props.active_theme.background}
+        textColor={props.active_theme.onBackground}
+        titleColor={props.active_theme.onBackground}
       />
     </div>
   );

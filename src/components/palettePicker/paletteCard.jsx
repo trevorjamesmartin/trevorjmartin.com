@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const PaletteCard = ({ colors, palette, activeTheme, handleChange }) => {
   const [linkState, setLinkState] = useState({ palette: undefined });
-  // const { colorOne, colorTwo, colorThree, colorFour } = colors;
+  const { primary, primaryVariant, secondary, secondaryVariant } = colors;
   const styleSize = { width: "10vw", height: "10vw" };
   return (
     <div
@@ -16,9 +16,7 @@ const PaletteCard = ({ colors, palette, activeTheme, handleChange }) => {
         borderRadius: "4px",
         width: "40vw",
         border: `1px solid ${
-          linkState.palette === palette
-            ? activeTheme.palette.colorTwo
-            : activeTheme.palette.colorOne
+          linkState.palette === palette ? colors.primaryVariant : colors.primary
         }`,
         cursor: "pointer",
       }}
@@ -26,28 +24,28 @@ const PaletteCard = ({ colors, palette, activeTheme, handleChange }) => {
       <div
         className="first-color"
         style={{
-          backgroundColor: colors.colorOne,
+          backgroundColor: primary,
           ...styleSize,
         }}
       />
       <div
         className="second-color"
         style={{
-          backgroundColor: colors.colorTwo,
+          backgroundColor: primaryVariant,
           ...styleSize,
         }}
       />
       <div
         className="third-color"
         style={{
-          backgroundColor: colors.colorThree,
+          backgroundColor: secondary,
           ...styleSize,
         }}
       />
       <div
         className="fourth-color"
         style={{
-          backgroundColor: colors.colorFour,
+          backgroundColor: secondaryVariant,
           ...styleSize,
         }}
       />

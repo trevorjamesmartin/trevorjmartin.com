@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 // import { themeColors } from "../../GlobalStyle";
 import { faCat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { starterTheme } from "../../themeMaker/starter";
 import PageRef from "../PageRef";
 import "./home.css";
 const Home = (props) => {
@@ -14,13 +15,15 @@ const Home = (props) => {
   // textColor="darkslategrey"
   const { theme_style } = props;
   const { textColor } = theme_style || {};
+  // console.log("test", props);
   const pageRefProps = {
     history: useHistory(),
-    hovercolor: props.palette.colorTwo,
+    hovercolor: props.active_theme ? props.active_theme.primaryVariant : "",
     normalcolor: textColor,
     globalStyle: { maxWidth: "40ch" },
+    active_theme: props.active_theme || starterTheme,
   };
-  console.log(props);
+  // console.log(props);
   return (
     <div className="page">
       <h1>
