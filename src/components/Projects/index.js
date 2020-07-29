@@ -12,7 +12,7 @@ import { GithubCards } from "nifty-components";
 
 import projectList from "./projects.json";
 const Projects = (props) => {
-  console.log("props", props);
+  // console.log("props", props);
   const {
     primary,
     primaryVariant,
@@ -25,7 +25,7 @@ const Projects = (props) => {
     colorThree: secondary,
     colorFour: secondaryVariant,
   };
-  console.log({ primary, primaryVariant, secondary, secondaryVariant });
+  // console.log({ primary, primaryVariant, secondary, secondaryVariant });
   return (
     <div className="page">
       <h1>

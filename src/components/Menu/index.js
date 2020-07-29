@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { useTransition, animated } from "react-spring";
+import { animated } from "react-spring";
 import {
   faReact,
   faJs,
@@ -8,42 +8,29 @@ import {
   faHtml5,
   faLinux,
 } from "@fortawesome/free-brands-svg-icons";
-import {
-  faAddressCard,
-  faSun,
-  faMoon,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faPalette } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { starterTheme } from "../../themeMaker/starter";
 
-// import { RoundedToggle } from "../Toggle";
+import ToggleMode from "../ToggleMode";
+
 import "./menu.css";
 
 export const MenuLeft = (props) => {
-  // console.log("menuLeft1", props);
   const { style, theme_options, active_theme } = props;
   const theme = active_theme || starterTheme;
   const color = theme.primary;
-  // const theme = active_theme; // || starterTheme || undefined;
-  const opt = theme_options.split(",");
-  // const color = theme.primary;
+  const opt = theme_options ? theme_options.split(",") : ["a"];
   const active = theme.secondary;
   const backgroundColor = theme.primaryVariant;
 
-  // springs
-  const [toggle, set] = useState(opt && opt[0] !== "a");
-  const transitions = useTransition(toggle, null, {
-    from: { position: "absolute", opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-  });
-  useEffect(() => {
-    console.log(opt);
-  }, []);
-  const toggleDarkMode = () => {
-    set(!toggle);
-    props.toggleDarkMode();
+  const toggleStyle = {
+    ...props,
+    position: "fixed",
+    top: "4rem",
+    left: "4rem",
   };
+
   return (
     <animated.div
       style={{
@@ -58,19 +45,7 @@ export const MenuLeft = (props) => {
     >
       <nav>
         <ul className="menu-list menu-list--left">
-          <li>
-            {transitions.map(({ item, key, props }) =>
-              item ? (
-                <animated.div style={props} onClick={toggleDarkMode}>
-                  <FontAwesomeIcon icon={faSun} alt="sun" />
-                </animated.div>
-              ) : (
-                <animated.div style={props} onClick={toggleDarkMode}>
-                  <FontAwesomeIcon icon={faMoon} alt="moon" />
-                </animated.div>
-              )
-            )}
-          </li>
+          <ToggleMode {...props} toggleStyle={toggleStyle} />
           <li className="menu-list-item menu-list-item--left">
             <NavLink
               to="/"
@@ -114,7 +89,7 @@ export const MenuLeft = (props) => {
                   activeStyle={{ color: active }}
                   exact
                 >
-                  theme
+                  <FontAwesomeIcon icon={faPalette} alt="color theme" />
                 </NavLink>
               </li>
               <li className="menu-list-item menu-list-item--left">

@@ -11,7 +11,7 @@ const activeTheme = ({ theme_options, light_mode, dark_mode }) => {
   const args = theme_options && theme_options.split(",");
   const active_theme =
     args && args.length > 0
-      ? { a: dark_mode || dark_base, b: light_mode || light_base }[args[0]]
+      ? { b: dark_mode || dark_base, a: light_mode || light_base }[args[0]]
       : undefined;
   return active_theme;
 };

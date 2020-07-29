@@ -43,27 +43,36 @@ const fadeIn = {
   leave: { opacity: 0, transform: "translate(0, 0, 0)" },
   config: { duration: 1234 },
 };
-export default function App() {
-  const [localTheme, setLocalTheme] = useState({ ...JSON.parse(starterTheme) });
+const OLDTHEME = JSON.parse(localStorage.getItem("theme", false));
+if (!OLDTHEME || (OLDTHEME.palette && OLDTHEME.palette.colorOne)) {
+  console.log("OLD VERSION, clearing local storage...");
+  localStorage.clear();
+}
+export default function App(props) {
   const location = useLocation();
   const transitions = useTransition(
     location,
     (location) => location.pathname,
     fadeIn
   );
-  // local storage
+  // local storage (theme persistence)
   const [appTheme, setAppTheme] = useStateWithLocalStorage(
     "theme",
     starterTheme
   );
-
+  // theme state
+  const [localTheme, setLocalTheme] = useState({ ...JSON.parse(appTheme) });
+  // darkmode state
+  const [mode, setMode] = useState(
+    localTheme.theme_options ? localTheme.theme_options[0] === "a" : false
+  );
   // springs
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
     transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,
   });
-  // console.log(location);
+  // callback function for useEffect
   const setTheme = useCallback(
     (context_id) => {
       const palette = palettes.find((pal) => pal.id === context_id); // find palettte by id
@@ -117,63 +126,77 @@ export default function App() {
       localTheme.active_theme.background,
     ]
   );
+  // <Route style={...}/>
   const routeStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: "100%",
   };
+  // callback function for useEffect
   const updateVersion = useCallback(
     (localTheme) => {
       setAppTheme(JSON.stringify(localTheme));
     },
     [setAppTheme]
   );
-  const toggleDarkMode = () => {
-    console.log("toggle dark mode");
-    const [ltm, ...opts] = localTheme.theme_options.split(",");
-    const theme_options = [`${ltm === "a" ? "b" : "a"}`, ...opts].join(",");
-    console.log(theme_options);
-    // setLocalTheme({...localTheme, theme_options })
+  // called from <ToggleMode />
+  const toggleDarkMode = (value) => {
+    // console.log(`toggleDarkMode(${value})`);
+    const theme_options =
+      (value ? "b" : "a") + localTheme.theme_options.slice(1);
     const updated = { ...localTheme, theme_options };
-    setLocalTheme(updated);
-    setAppTheme(JSON.stringify(updated));
+    setLocalTheme(updated); // write to
+    setAppTheme(JSON.stringify(updated)); // process changes
   };
+  const mergedLocalTheme = useCallback((update) => {
+    return { ...localTheme, ...update };
+  }, []);
   useEffect(() => {
-    // console.log("use-effect");
-    const oldStore = localStorage.getItem("theme", false);
+    // try to read from storage
+    const oldStore = localStorage.getItem("theme", undefined);
     let oldTheme = undefined;
-    if (oldStore) {
+    if (oldStore !== undefined) {
       console.log("theme data found... loading");
       try {
         oldTheme = JSON.parse(localStorage.getItem("theme", false));
-        console.log("loaded old theme", oldTheme);
+        if (oldTheme.palette.colorOne) {
+          oldTheme = localStorage;
+          console.log("oldTheme");
+        }
       } catch {
         oldTheme = {};
       }
-      // console.log("old theme, ", oldTheme);
-      // console.log("new", localTheme);
-      if (oldTheme.context_id !== localTheme.context_id) {
+      if (
+        oldTheme.context_id !== localTheme.context_id ||
+        !oldTheme.dark_mode
+      ) {
         console.log("versions differ, updating storage...");
-        // update format
-        updateVersion();
-        // console.log("updated", localTheme.context_id);
-        const merged = { ...localTheme, ...oldTheme };
-        setAppTheme(JSON.stringify(merged));
-        const theme = merged.active_theme;
-        document.body.style.backgroundColor = theme.background;
-        document.body.style.color = theme.onBackground;
+        // merging with new version, prefer localStorage
+        // const merged = { ...localTheme, ...oldTheme };
+        const merged = mergedLocalTheme(oldTheme);
+        const { active_theme } = merged;
+        updateVersion(merged); // callback for setAppTheme
+        document.body.style.backgroundColor = active_theme.background;
+        document.body.style.color = active_theme.onBackground;
       } else {
-        console.log("versions match, updating body background");
-        document.body.style.backgroundColor =
-          localTheme.active_theme.background;
-        document.body.style.color = localTheme.active_theme.onBackground;
+        // console.log("versions match.");
+        // const { active_theme } = localTheme;
+        const { active_theme } = mergedLocalTheme({});
+        document.body.style.backgroundColor = active_theme.background;
+        document.body.style.color = active_theme.onBackground;
       }
     }
     const t = JSON.parse(appTheme);
-    // console.log(t);
     setTheme(t.context_id);
-  }, [appTheme, setTheme, updateVersion, localTheme.version]);
+  }, [
+    appTheme,
+    setTheme,
+    updateVersion,
+    localTheme.context_id,
+    mergedLocalTheme,
+  ]);
+
   return (
     <div className="App">
       <div className="nav">
@@ -189,7 +212,13 @@ export default function App() {
             <FontAwesomeIcon icon={faBars} />
           )}
         </button>
-        <MenuLeft {...localTheme} toggleDarkMode={toggleDarkMode} />
+        <MenuLeft
+          {...localTheme}
+          toggleDarkMode={toggleDarkMode}
+          mode={mode}
+          setMode={setMode}
+          theme_options={JSON.parse(appTheme).theme_options}
+        />
         <MenuFull
           {...localTheme}
           style={fullMenuAnimation}
