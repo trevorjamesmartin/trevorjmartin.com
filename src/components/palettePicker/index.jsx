@@ -7,13 +7,20 @@ const PalettePicker = (props) => {
   const [state] = useState({ context_id, palette });
   useEffect(() => {
     const makeCard = ({ id, colors }) => {
-      const [colorOne, colorTwo, colorThree, colorFour] = JSON.parse(colors);
-      const namedColors = { colorOne, colorTwo, colorThree, colorFour };
+      const [primary, primaryVariant, secondary, secondaryVariant] = JSON.parse(
+        colors
+      );
+      const themeColors = {
+        primary,
+        primaryVariant,
+        secondary,
+        secondaryVariant,
+      };
       return (
         <PaletteCard
           key={id}
           palette={id}
-          colors={namedColors}
+          colors={themeColors}
           handleChange={() => handleChangeTheme(id)}
           activeTheme={state}
         />

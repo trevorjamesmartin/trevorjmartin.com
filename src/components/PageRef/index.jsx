@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import "./pageref.css";
 /**
  * Page Reference
  * @param {*} url push to this location on click
@@ -8,13 +7,11 @@ import React, { useState } from "react";
  * @param {*} hoverColor color when mouse is over the page ref
  * @param {*} normalColor color
  */
-const PageLink = ({ url, text, name, ...props }) => {
-  // const history = useHistory();
+const PageLink = ({ url, text, name, active_theme, ...props }) => {
   const history = props.history;
   const [linkState, setLinkState] = useState({ name: undefined });
-  // const shadowcolor = props.shadowcolor || "black";
-  const normalcolor = props.normalcolor || "darkslategrey";
-  const hovercolor = props.hovercolor || "cornflowerblue";
+  const normalcolor = active_theme.onBackground || "black";
+  const hovercolor = active_theme.primaryVariant || "cornflowerblue";
   return (
     <div
       onClick={() => history.push(url)}

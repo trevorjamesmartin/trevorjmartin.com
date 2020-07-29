@@ -23,42 +23,8 @@ import ReadMe from "./components/ReadMe";
 import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
 import PalettePicker from "./components/palettePicker";
 import "./App.css";
-import light_base from "./theme/light_base.json";
-import dark_base from "./theme/dark_base.json";
+import { makeTheme, activeTheme, starterTheme } from "./themeMaker";
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
-
-const light_style = {
-  ...light_base,
-  borderColorNormal: light_base.background || "whitesmoke",
-  cardBackgroundColor: light_base.surface,
-  backgroundColor: light_base.background || "whitesmoke",
-  borderColorSelected: light_base.background || "whitesmoke",
-  titleColor: light_base.onBackground,
-  textColor: light_base.onBackground,
-};
-const dark_style = {
-  ...dark_base,
-  borderColorNormal: dark_base.background || "#2b2727",
-  cardBackgroundColor: dark_base.surface || "slategrey",
-  backgroundColor: dark_base.background || "#2b2727",
-  borderColorSelected: dark_base.background || "#2b2727",
-  titleColor: dark_base.onBackground || "white",
-  textColor: dark_base.onBackground || "whitesmoke",
-};
-
-const theme_options = "b";
-const theme_style = theme_options[0] === "a" ? dark_style : light_style;
-const defaultTheme = JSON.stringify({
-  context_id: 0,
-  palette: {
-    colorOne: "#7c3c21",
-    colorTwo: "#ec823a",
-    colorThree: "#f9c49a",
-    colorFour: "#e8e4e1",
-  },
-  theme_options,
-  theme_style,
-});
 
 // const rightToLeft = {
 //   from: { opacity: 0, transform: "translate3d(100vw, 0, 0)" },
@@ -78,6 +44,7 @@ const fadeIn = {
   config: { duration: 1234 },
 };
 export default function App() {
+  const [localTheme, setLocalTheme] = useState({ ...JSON.parse(starterTheme) });
   const location = useLocation();
   const transitions = useTransition(
     location,
@@ -87,8 +54,9 @@ export default function App() {
   // local storage
   const [appTheme, setAppTheme] = useStateWithLocalStorage(
     "theme",
-    defaultTheme
+    starterTheme
   );
+
   // springs
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
   const fullMenuAnimation = useSpring({
@@ -98,20 +66,56 @@ export default function App() {
   // console.log(location);
   const setTheme = useCallback(
     (context_id) => {
-      const newTheme = { theme_options, theme_style, ...JSON.parse(appTheme) };
-      const c = parsePalette(palettes.find((pal) => pal.id === context_id));
+      const palette = palettes.find((pal) => pal.id === context_id); // find palettte by id
+      // console.log("set theme!", palette, localTheme);
+      const c = parsePalette(palette); // read colors into JSON
+      const { light_mode, dark_mode } = makeTheme(JSON.parse(palette.colors)); // mix colors with bases
+      // console.log(
+      //   `options: ${theme_options} light: ${JSON.stringify(
+      //     light_mode
+      //   )}\ndark: ${JSON.stringify(dark_mode)}`
+      // );
+      const theme_options = JSON.parse(appTheme).theme_options; // saved options
+      // const theme_options = localTheme.theme_options;
+      // console.log("options", theme_options);
+      const active_theme = activeTheme({
+        theme_options,
+        light_mode,
+        dark_mode,
+      });
+      const newTheme = {
+        light_mode,
+        dark_mode,
+        active_theme,
+        theme_options,
+      }; //
       if (c) {
-        setAppTheme(
-          JSON.stringify({
-            ...newTheme,
-            context_id,
-            palette: c,
-          })
-        );
+        const lt = {
+          ...newTheme,
+          context_id,
+          palette: c,
+        };
+
+        // console.log(JSON.stringify(lt));
+        setLocalTheme(lt); // set state
+        setAppTheme(JSON.stringify(lt)); // set local storage
+        // }
+        // inject
+        // console.log(appTheme);
+        // document.body.style.backgroundColor = appTheme.activeTheme.background;
+        // document.body.style.color = appTheme.activeTheme.onBackground;
       }
+      document.body.style.backgroundColor = localTheme.active_theme.background;
+      document.body.style.color = localTheme.active_theme.onBackground;
       return true;
     },
-    [appTheme, setAppTheme]
+    [
+      // localTheme.theme_options,
+      appTheme,
+      setAppTheme,
+      localTheme.active_theme.onBackground,
+      localTheme.active_theme.background,
+    ]
   );
   const routeStyle = {
     display: "flex",
@@ -119,20 +123,57 @@ export default function App() {
     alignItems: "center",
     width: "100%",
   };
+  const updateVersion = useCallback(
+    (localTheme) => {
+      setAppTheme(JSON.stringify(localTheme));
+    },
+    [setAppTheme]
+  );
+  const toggleDarkMode = () => {
+    console.log("toggle dark mode");
+    const [ltm, ...opts] = localTheme.theme_options.split(",");
+    const theme_options = [`${ltm === "a" ? "b" : "a"}`, ...opts].join(",");
+    console.log(theme_options);
+    // setLocalTheme({...localTheme, theme_options })
+    const updated = { ...localTheme, theme_options };
+    setLocalTheme(updated);
+    setAppTheme(JSON.stringify(updated));
+  };
   useEffect(() => {
+    // console.log("use-effect");
+    const oldStore = localStorage.getItem("theme", false);
+    let oldTheme = undefined;
+    if (oldStore) {
+      console.log("theme data found... loading");
+      try {
+        oldTheme = JSON.parse(localStorage.getItem("theme", false));
+        console.log("loaded old theme", oldTheme);
+      } catch {
+        oldTheme = {};
+      }
+      // console.log("old theme, ", oldTheme);
+      // console.log("new", localTheme);
+      if (oldTheme.context_id !== localTheme.context_id) {
+        console.log("versions differ, updating storage...");
+        // update format
+        updateVersion();
+        // console.log("updated", localTheme.context_id);
+        const merged = { ...localTheme, ...oldTheme };
+        setAppTheme(JSON.stringify(merged));
+        const theme = merged.active_theme;
+        document.body.style.backgroundColor = theme.background;
+        document.body.style.color = theme.onBackground;
+      } else {
+        console.log("versions match, updating body background");
+        document.body.style.backgroundColor =
+          localTheme.active_theme.background;
+        document.body.style.color = localTheme.active_theme.onBackground;
+      }
+    }
     const t = JSON.parse(appTheme);
-    // const palette = JSON.parse(t.palette);
-    document.body.style.backgroundColor = t.theme_style.backgroundColor;
-    document.body.style.color = t.theme_style.textColor;
-    // if (
-    //   !t.context_id ||
-    //   !t.theme_options ||
-    //   !t.theme_style ||
-    //   (t.theme_style && !t.theme_style.primary)
-    // ) {
+    // console.log(t);
     setTheme(t.context_id);
-    // }
-  }, [appTheme, setTheme]);
+  }, [appTheme, setTheme, updateVersion, localTheme.version]);
   return (
     <div className="App">
       <div className="nav">
@@ -148,9 +189,9 @@ export default function App() {
             <FontAwesomeIcon icon={faBars} />
           )}
         </button>
-        <MenuLeft {...JSON.parse(appTheme)} />
+        <MenuLeft {...localTheme} toggleDarkMode={toggleDarkMode} />
         <MenuFull
-          {...JSON.parse(appTheme)}
+          {...localTheme}
           style={fullMenuAnimation}
           handleClick={() => setFullMenuVisible(!fullMenuVisible)}
         />
@@ -163,7 +204,7 @@ export default function App() {
                 path="/about"
                 component={() => (
                   <div style={routeStyle}>
-                    <About text="About" {...JSON.parse(appTheme)} />
+                    <About text="About" {...localTheme} />
                   </div>
                 )}
               />
@@ -173,7 +214,7 @@ export default function App() {
                   <div style={routeStyle}>
                     <ReadMe
                       repoURL="https://github.com/debauchery1st/debauchery1st"
-                      {...JSON.parse(appTheme)}
+                      {...localTheme}
                       style={{
                         display: "block",
                         maxWidth: "60ch",
@@ -191,7 +232,7 @@ export default function App() {
                     <ReadMe
                       repoURL="https://github.com/debauchery1st/trevorjmartin.com"
                       readmeURL="https://raw.githubusercontent.com/debauchery1st/trevorjmartin.com/master/src/components/README.md"
-                      {...JSON.parse(appTheme)}
+                      {...localTheme}
                       style={{
                         display: "block",
                         maxWidth: "60ch",
@@ -209,7 +250,7 @@ export default function App() {
                     <PalettePicker
                       handleChangeTheme={setTheme}
                       context={{ palettes }}
-                      {...JSON.parse(appTheme)}
+                      {...localTheme}
                     />
                   </div>
                 )}
@@ -218,7 +259,7 @@ export default function App() {
                 path="/projects"
                 component={() => (
                   <div style={routeStyle}>
-                    <Projects text="Projects" {...JSON.parse(appTheme)} />
+                    <Projects text="Projects" {...localTheme} />
                   </div>
                 )}
               />
@@ -227,7 +268,7 @@ export default function App() {
                 path="/"
                 component={() => (
                   <div style={routeStyle}>
-                    <Home text="Home" {...JSON.parse(appTheme)} />
+                    <Home text="Home" {...localTheme} />
                   </div>
                 )}
               />

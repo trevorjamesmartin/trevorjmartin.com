@@ -22,14 +22,14 @@ export const complimentPalette = (colors) => {
 };
 
 /**
- * return parsed palette.colors.
  * @param {JSON} palette { ..., colors: "[\"#7c3c21\",\"#ec823a\",\"#f9c49a\",\"#e8e4e1\"]" }
+ * @return {Object} { primary, primaryVariant, secondary, secondaryVariant }
  */
 function parsePalette(palette) {
-  const [colorOne, colorTwo, colorThree, colorFour] = JSON.parse(
+  const [primary, primaryVariant, secondary, secondaryVariant] = JSON.parse(
     palette.colors
   );
-  return { colorOne, colorTwo, colorThree, colorFour };
+  return { primary, primaryVariant, secondary, secondaryVariant };
 }
 
 export default parsePalette;
