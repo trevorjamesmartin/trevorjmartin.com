@@ -213,9 +213,9 @@ export default function App(props) {
   // };
   const toggleStyle = {
     ...props,
-    position: "fixed",
-    top: "3.4rem",
-    left: "4rem",
+    position: "absolute",
+    top: "1.7rem",
+    left: "1.7rem",
     cursor: "pointer",
     // display: "none",
     zIndex: 9,
