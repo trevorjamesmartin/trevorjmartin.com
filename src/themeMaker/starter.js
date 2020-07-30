@@ -1,6 +1,7 @@
 import dark_base from "./dark_base.json";
 import light_base from "./light_base.json";
 import makeTheme from "./make-theme";
+import { prefersDarkMode } from "./index";
 /**
  * returns light or dark mode, accordingly
  * @param {String} theme_options CSV; Must include "a" or "b"
@@ -33,7 +34,7 @@ const starterTheme = JSON.stringify({
     secondary: "#f9c49a",
     secondaryVariant: "#e8e4e1",
   },
-  theme_options: "a",
+  theme_options: prefersDarkMode() ? "b" : "a",
   active_theme,
   version: "b5",
 });

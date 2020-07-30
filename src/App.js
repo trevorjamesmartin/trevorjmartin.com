@@ -9,6 +9,8 @@ import {
   faHome,
   faArrowCircleLeft,
   faArrowCircleRight,
+  // faPalette,
+  // faBox,
 } from "@fortawesome/free-solid-svg-icons"; //"check-square" and "coffee"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,14 +18,19 @@ import palettes from "./theme/palettes.json";
 import parsePalette from "./theme/parsePalette";
 
 import { MenuLeft, MenuFull } from "./components/Menu";
+
+import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
+
+import PalettePicker from "./components/palettePicker";
+import ReadMe from "./components/ReadMe";
+
+import Projects from "./components/Projects";
 import About from "./components/About";
 import Home from "./components/Home";
-import Projects from "./components/Projects";
-import ReadMe from "./components/ReadMe";
-import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
-import PalettePicker from "./components/palettePicker";
+
 import "./App.css";
 import { makeTheme, activeTheme, starterTheme } from "./themeMaker";
+import ToggleMode from "./components/ToggleMode";
 library.add(faHome, faArrowCircleLeft, faArrowCircleRight);
 
 // const rightToLeft = {
@@ -79,11 +86,7 @@ export default function App(props) {
       // console.log("set theme!", palette, localTheme);
       const c = parsePalette(palette); // read colors into JSON
       const { light_mode, dark_mode } = makeTheme(JSON.parse(palette.colors)); // mix colors with bases
-      // console.log(
-      //   `options: ${theme_options} light: ${JSON.stringify(
-      //     light_mode
-      //   )}\ndark: ${JSON.stringify(dark_mode)}`
-      // );
+
       const theme_options = JSON.parse(appTheme).theme_options; // saved options
       // const theme_options = localTheme.theme_options;
       // console.log("options", theme_options);
@@ -196,7 +199,31 @@ export default function App(props) {
     localTheme.context_id,
     mergedLocalTheme,
   ]);
-
+  // const toggleStyle = {
+  //   ...props,
+  //   position: "fixed",
+  //   // display: "hidden",
+  //   top: "3rem",
+  //   left: "4rem",
+  //   cursor: "pointer",
+  //   "@media screen and (min-width: 32em)": {
+  //     display: "flex",
+  //     backgroundColor: "blue",
+  //   },
+  // };
+  const toggleStyle = {
+    ...props,
+    position: "fixed",
+    top: "4rem",
+    left: "4rem",
+    cursor: "pointer",
+    // display: "none",
+    zIndex: 9,
+    "@media only screen and (max-width: 900px)": {
+      // backgroundColor: "blue",
+      zIndex: 999,
+    },
+  };
   return (
     <div className="App">
       <div className="nav">
@@ -205,6 +232,13 @@ export default function App(props) {
             fullMenuVisible ? " menu-button-active" : ""
           }`}
           onClick={() => setFullMenuVisible(!fullMenuVisible)}
+          style={{
+            border: `1px solid ${localTheme.active_theme.onBackground}`,
+            color: localTheme.active_theme.onBackground,
+            backgroundColor: localTheme.active_theme.background,
+            opacity: fullMenuVisible ? "40%" : "50%",
+            borderRadius: "4px",
+          }}
         >
           {fullMenuVisible ? (
             <FontAwesomeIcon icon={faBars} />
@@ -212,6 +246,13 @@ export default function App(props) {
             <FontAwesomeIcon icon={faBars} />
           )}
         </button>
+        <ToggleMode
+          {...props}
+          toggleStyle={toggleStyle}
+          mode={mode}
+          setMode={setMode}
+          toggleDarkMode={toggleDarkMode}
+        />
         <MenuLeft
           {...localTheme}
           toggleDarkMode={toggleDarkMode}
