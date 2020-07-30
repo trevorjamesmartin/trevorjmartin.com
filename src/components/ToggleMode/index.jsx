@@ -11,7 +11,7 @@ const ToggleMode = ({ mode, setMode, toggleStyle, theme_options, ...rest }) => {
     config: { duration: 150 },
   });
 
-  const toggleDarkMode = () => {
+  const toggle = () => {
     const m = !mode;
     console.log("toggle, ", mode);
     rest.toggleDarkMode(m);
@@ -26,17 +26,19 @@ const ToggleMode = ({ mode, setMode, toggleStyle, theme_options, ...rest }) => {
     <>
       {transitions.map(({ item, key, props }) =>
         item ? (
-          <animated.div key={key} onClick={toggleDarkMode} style={toggleStyle}>
+          <animated.div key={key} onClick={toggle} style={toggleStyle}>
             <FontAwesomeIcon
               icon={props.inDarkMode ? faSun : faMoon}
               alt={props.inDarkMode ? "sun" : "moon"}
+              style={toggleStyle}
             />
           </animated.div>
         ) : (
-          <animated.div key={key} onClick={toggleDarkMode} style={toggleStyle}>
+          <animated.div key={key} onClick={toggle} style={toggleStyle}>
             <FontAwesomeIcon
               icon={props.inDarkMode ? faMoon : faSun}
               alt={props.inDarkMode ? "moon" : "sun"}
+              style={toggleStyle}
             />
           </animated.div>
         )

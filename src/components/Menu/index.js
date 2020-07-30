@@ -29,86 +29,89 @@ export const MenuLeft = (props) => {
     position: "fixed",
     top: "4rem",
     left: "4rem",
+    cursor: "pointer",
   };
 
   return (
-    <animated.div
-      style={{
-        ...style,
-        a: {
+    <>
+      <animated.div
+        style={{
+          ...style,
+          a: {
+            backgroundColor,
+            color,
+          },
           backgroundColor,
-          // color,
-        },
-        backgroundColor,
-      }}
-      className="menu menu--left"
-    >
-      <nav>
-        <ul className="menu-list menu-list--left">
-          <ToggleMode {...props} toggleStyle={toggleStyle} />
-          <li className="menu-list-item menu-list-item--left">
-            <NavLink
-              to="/"
-              style={{ color }}
-              activeStyle={{ color: active }}
-              exact
-            >
-              <FontAwesomeIcon icon="home" alt="Home" />
-            </NavLink>
-          </li>
-          <li className="menu-list-item menu-list-item--left">
-            <NavLink
-              to="/projects"
-              style={{ color }}
-              activeStyle={{ color: active }}
-              exact
-            >
-              <FontAwesomeIcon icon={faLinux} alt="Projects" />
-              <FontAwesomeIcon icon={faPython} alt="Projects" />
-              <FontAwesomeIcon icon={faReact} alt="Projects" />
-              <FontAwesomeIcon icon={faJs} alt="Projects" />
-              <FontAwesomeIcon icon={faHtml5} alt="Projects" />
-            </NavLink>
-          </li>
-          <li className="menu-list-item menu-list-item--left">
-            <NavLink
-              to="/about"
-              style={{ color }}
-              activeStyle={{ color: active }}
-              exact
-            >
-              <FontAwesomeIcon icon={faAddressCard} alt="About" />
-            </NavLink>
-          </li>
-          {opt.filter((a) => a === "cats").length > 0 ? (
-            <>
-              <li className="menu-list-item menu-list-item--left">
-                <NavLink
-                  to="/theme"
-                  style={{ color }}
-                  activeStyle={{ color: active }}
-                  exact
-                >
-                  <FontAwesomeIcon icon={faPalette} alt="color theme" />
-                </NavLink>
-              </li>
-              <li className="menu-list-item menu-list-item--left">
-                <NavLink
-                  to="/readme"
-                  style={{ color }}
-                  activeStyle={{ color: active }}
-                  exact
-                >
-                  readme
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            ""
-          )}
-        </ul>
-      </nav>
-    </animated.div>
+        }}
+        className="menu menu--left"
+      >
+        <ToggleMode {...props} toggleStyle={toggleStyle} />
+        <nav>
+          <ul className="menu-list menu-list--left">
+            <li className="menu-list-item menu-list-item--left">
+              <NavLink
+                to="/"
+                style={{ color }}
+                activeStyle={{ color: active }}
+                exact
+              >
+                <FontAwesomeIcon icon="home" alt="Home" />
+              </NavLink>
+            </li>
+            <li className="menu-list-item menu-list-item--left">
+              <NavLink
+                to="/projects"
+                style={{ color }}
+                activeStyle={{ color: active }}
+                exact
+              >
+                <FontAwesomeIcon icon={faLinux} alt="Projects" />
+                <FontAwesomeIcon icon={faPython} alt="Projects" />
+                <FontAwesomeIcon icon={faReact} alt="Projects" />
+                <FontAwesomeIcon icon={faJs} alt="Projects" />
+                <FontAwesomeIcon icon={faHtml5} alt="Projects" />
+              </NavLink>
+            </li>
+            <li className="menu-list-item menu-list-item--left">
+              <NavLink
+                to="/about"
+                style={{ color }}
+                activeStyle={{ color: active }}
+                exact
+              >
+                <FontAwesomeIcon icon={faAddressCard} alt="About" />
+              </NavLink>
+            </li>
+            {opt.filter((a) => a === "cats").length > 0 ? (
+              <>
+                <li className="menu-list-item menu-list-item--left">
+                  <NavLink
+                    to="/theme"
+                    style={{ color }}
+                    activeStyle={{ color: active }}
+                    exact
+                  >
+                    <FontAwesomeIcon icon={faPalette} alt="color theme" />
+                  </NavLink>
+                </li>
+                <li className="menu-list-item menu-list-item--left">
+                  <NavLink
+                    to="/readme"
+                    style={{ color }}
+                    activeStyle={{ color: active }}
+                    exact
+                  >
+                    readme
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              ""
+            )}
+          </ul>
+        </nav>
+      </animated.div>
+    </>
   );
 };
 export const MenuFull = ({
