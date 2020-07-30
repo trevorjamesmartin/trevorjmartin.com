@@ -214,7 +214,7 @@ export default function App(props) {
   const toggleStyle = {
     ...props,
     position: "fixed",
-    top: "4rem",
+    top: "3.4rem",
     left: "4rem",
     cursor: "pointer",
     // display: "none",
