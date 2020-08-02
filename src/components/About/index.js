@@ -13,9 +13,13 @@ export default function About(props) {
   return (
     <div className="page">
       <h1>
-        <FontAwesomeIcon icon={faAddressCard} alt="Home" />
+        <FontAwesomeIcon
+          icon={faAddressCard}
+          alt="Home"
+          onClick={() => props.toggleMatrix()}
+        />
       </h1>
-      <FontAwesomeIcon icon={faCat} />
+      <FontAwesomeIcon icon={faCat} onClick={() => props.toggleMatrix()} />
       {props.text}
       <div className="about-details">
         <a
@@ -43,7 +47,7 @@ export default function About(props) {
               color:
                 linkState.hover && linkState.ref === "li"
                   ? theme.primaryVariant
-                  : theme.primary,
+                  : theme.primary
             }}
           >
             Linkedin
@@ -74,7 +78,7 @@ export default function About(props) {
               color:
                 linkState.hover && linkState.ref === "gh"
                   ? theme.primaryVariant
-                  : theme.primary,
+                  : theme.primary
             }}
           >
             Github

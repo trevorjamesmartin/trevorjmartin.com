@@ -6,7 +6,7 @@ import {
   faJs,
   faPython,
   faHtml5,
-  faLinux,
+  faLinux
 } from "@fortawesome/free-brands-svg-icons";
 import { GithubCards } from "nifty-components";
 
@@ -17,25 +17,44 @@ const Projects = (props) => {
     primary,
     primaryVariant,
     secondary,
-    secondaryVariant,
+    secondaryVariant
   } = props.palette;
   const palette = {
     colorOne: primary,
     colorTwo: primaryVariant,
     colorThree: secondary,
-    colorFour: secondaryVariant,
+    colorFour: secondaryVariant
   };
-  // console.log({ primary, primaryVariant, secondary, secondaryVariant });
   return (
     <div className="page">
       <h1>
-        <FontAwesomeIcon icon={faLinux} alt="Projects" />
-        <FontAwesomeIcon icon={faPython} alt="Projects" />
-        <FontAwesomeIcon icon={faReact} alt="Projects" />
-        <FontAwesomeIcon icon={faJs} alt="Projects" />
-        <FontAwesomeIcon icon={faHtml5} alt="Projects" />
+        <FontAwesomeIcon
+          icon={faLinux}
+          alt="Projects"
+          onClick={() => props.toggleMatrix()}
+        />
+        <FontAwesomeIcon
+          icon={faPython}
+          alt="Projects"
+          onClick={() => props.toggleMatrix()}
+        />
+        <FontAwesomeIcon
+          icon={faReact}
+          alt="Projects"
+          onClick={() => props.toggleMatrix()}
+        />
+        <FontAwesomeIcon
+          icon={faJs}
+          alt="Projects"
+          onClick={() => props.toggleMatrix()}
+        />
+        <FontAwesomeIcon
+          icon={faHtml5}
+          alt="Projects"
+          onClick={() => props.toggleMatrix()}
+        />
       </h1>
-      <FontAwesomeIcon icon={faCat} />
+      <FontAwesomeIcon icon={faCat} onClick={() => props.toggleMatrix()} />
       {props.text}
       <GithubCards
         width="55ch"

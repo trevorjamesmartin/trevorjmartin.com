@@ -8,11 +8,6 @@ import { starterTheme } from "../../themeMaker/starter";
 import PageRef from "../PageRef";
 import "./home.css";
 const Home = (props) => {
-  // borderColorSelected="whitesmoke"
-  // borderColorNormal="whitesmoke"
-  // backgroundColor="whitesmoke"
-  // titleColor="darkgrey"
-  // textColor="darkslategrey"
   const { theme_style } = props;
   const { textColor } = theme_style || {};
   // console.log("test", props);
@@ -21,15 +16,19 @@ const Home = (props) => {
     hovercolor: props.active_theme ? props.active_theme.primaryVariant : "",
     normalcolor: textColor,
     globalStyle: { maxWidth: "40ch" },
-    active_theme: props.active_theme || starterTheme,
+    active_theme: props.active_theme || starterTheme
   };
   // console.log(props);
   return (
     <div className="page">
       <h1>
-        <FontAwesomeIcon icon="home" alt="Home" />
+        <FontAwesomeIcon
+          icon="home"
+          alt="Home"
+          onClick={() => props.toggleMatrix()}
+        />
       </h1>
-      <FontAwesomeIcon icon={faCat} />
+      <FontAwesomeIcon icon={faCat} onClick={() => props.toggleMatrix()} />
       {props.text}
       <div className="hello-world">
         <h1>Hello, I'm Trevor Martin.</h1>

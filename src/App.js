@@ -8,7 +8,7 @@ import {
   faBars,
   faHome,
   faArrowCircleLeft,
-  faArrowCircleRight,
+  faArrowCircleRight
   // faPalette,
   // faBox,
 } from "@fortawesome/free-solid-svg-icons"; //"check-square" and "coffee"
@@ -27,7 +27,7 @@ import ReadMe from "./components/ReadMe";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Home from "./components/Home";
-
+import MatrixRain from "./components/MatrixRain";
 import "./App.css";
 import { makeTheme, activeTheme, starterTheme } from "./themeMaker";
 import ToggleMode from "./components/ToggleMode";
@@ -48,7 +48,7 @@ const fadeIn = {
   from: { opacity: 0, transform: "translate(0, 0, 0)" },
   enter: { opacity: 1, transform: "translate(0, 0, 0)" },
   leave: { opacity: 0, transform: "translate(0, 0, 0)" },
-  config: { duration: 1234 },
+  config: { duration: 1234 }
 };
 const OLDTHEME = JSON.parse(localStorage.getItem("theme", false));
 if (!OLDTHEME || (OLDTHEME.palette && OLDTHEME.palette.colorOne)) {
@@ -77,8 +77,10 @@ export default function App(props) {
   const [fullMenuVisible, setFullMenuVisible] = useState(false);
   const fullMenuAnimation = useSpring({
     opacity: fullMenuVisible ? 1 : 0,
-    transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`,
+    transform: fullMenuVisible ? `translateY(0)` : `translateY(-100%)`
   });
+  // matrix
+  const [matrixRain, setMatrixRain] = useState(false);
   // callback function for useEffect
   const setTheme = useCallback(
     (context_id) => {
@@ -93,19 +95,19 @@ export default function App(props) {
       const active_theme = activeTheme({
         theme_options,
         light_mode,
-        dark_mode,
+        dark_mode
       });
       const newTheme = {
         light_mode,
         dark_mode,
         active_theme,
-        theme_options,
+        theme_options
       }; //
       if (c) {
         const lt = {
           ...newTheme,
           context_id,
-          palette: c,
+          palette: c
         };
 
         // console.log(JSON.stringify(lt));
@@ -126,7 +128,7 @@ export default function App(props) {
       appTheme,
       setAppTheme,
       localTheme.active_theme.onBackground,
-      localTheme.active_theme.background,
+      localTheme.active_theme.background
     ]
   );
   // <Route style={...}/>
@@ -134,7 +136,7 @@ export default function App(props) {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    width: "100%"
   };
   // callback function for useEffect
   const updateVersion = useCallback(
@@ -197,20 +199,9 @@ export default function App(props) {
     setTheme,
     updateVersion,
     localTheme.context_id,
-    mergedLocalTheme,
+    mergedLocalTheme
   ]);
-  // const toggleStyle = {
-  //   ...props,
-  //   position: "fixed",
-  //   // display: "hidden",
-  //   top: "3rem",
-  //   left: "4rem",
-  //   cursor: "pointer",
-  //   "@media screen and (min-width: 32em)": {
-  //     display: "flex",
-  //     backgroundColor: "blue",
-  //   },
-  // };
+
   const toggleStyle = {
     ...props,
     position: "absolute",
@@ -221,11 +212,12 @@ export default function App(props) {
     zIndex: 9,
     "@media only screen and (max-width: 900px)": {
       // backgroundColor: "blue",
-      zIndex: 999,
-    },
+      zIndex: 999
+    }
   };
   return (
     <div className="App">
+      {matrixRain ? <MatrixRain {...localTheme} /> : []}
       <div className="nav">
         <button
           className={`menu-button menu-button--full${
@@ -237,7 +229,7 @@ export default function App(props) {
             color: localTheme.active_theme.onBackground,
             backgroundColor: localTheme.active_theme.background,
             opacity: fullMenuVisible ? "40%" : "50%",
-            borderRadius: "4px",
+            borderRadius: "4px"
           }}
         >
           {fullMenuVisible ? (
@@ -274,7 +266,11 @@ export default function App(props) {
                 path="/about"
                 component={() => (
                   <div style={routeStyle}>
-                    <About text="About" {...localTheme} />
+                    <About
+                      text="About"
+                      {...localTheme}
+                      toggleMatrix={() => setMatrixRain(!matrixRain)}
+                    />
                   </div>
                 )}
               />
@@ -289,7 +285,7 @@ export default function App(props) {
                         display: "block",
                         maxWidth: "60ch",
                         textAlign: "left",
-                        margin: "1rem",
+                        margin: "1rem"
                       }}
                     />
                   </div>
@@ -307,7 +303,7 @@ export default function App(props) {
                         display: "block",
                         maxWidth: "60ch",
                         textAlign: "left",
-                        margin: "1rem",
+                        margin: "1rem"
                       }}
                     />
                   </div>
@@ -321,6 +317,7 @@ export default function App(props) {
                       handleChangeTheme={setTheme}
                       context={{ palettes }}
                       {...localTheme}
+                      toggleMatrix={() => setMatrixRain(!matrixRain)}
                     />
                   </div>
                 )}
@@ -329,7 +326,11 @@ export default function App(props) {
                 path="/projects"
                 component={() => (
                   <div style={routeStyle}>
-                    <Projects text="Projects" {...localTheme} />
+                    <Projects
+                      text="Projects"
+                      {...localTheme}
+                      toggleMatrix={() => setMatrixRain(!matrixRain)}
+                    />
                   </div>
                 )}
               />
@@ -338,7 +339,11 @@ export default function App(props) {
                 path="/"
                 component={() => (
                   <div style={routeStyle}>
-                    <Home text="Home" {...localTheme} />
+                    <Home
+                      text="Home"
+                      {...localTheme}
+                      toggleMatrix={() => setMatrixRain(!matrixRain)}
+                    />
                   </div>
                 )}
               />

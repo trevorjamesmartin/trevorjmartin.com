@@ -14,7 +14,7 @@ const PalettePicker = (props) => {
         primary,
         primaryVariant,
         secondary,
-        secondaryVariant,
+        secondaryVariant
       };
       return (
         <PaletteCard
