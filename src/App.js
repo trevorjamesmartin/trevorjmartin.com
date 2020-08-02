@@ -27,7 +27,7 @@ import ReadMe from "./components/ReadMe";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Home from "./components/Home";
-import MatrixRain from "./components/MatrixRain";
+import { MatrixRain } from "nifty-components";
 import "./App.css";
 import { makeTheme, activeTheme, starterTheme } from "./themeMaker";
 import ToggleMode from "./components/ToggleMode";
@@ -217,7 +217,14 @@ export default function App(props) {
   };
   return (
     <div className="App">
-      {matrixRain ? <MatrixRain {...localTheme} /> : []}
+      {matrixRain ? (
+        <MatrixRain
+          matrixBackground={localTheme.active_theme.background}
+          matrixRain={localTheme.active_theme.primaryVariant}
+        />
+      ) : (
+        []
+      )}
       <div className="nav">
         <button
           className={`menu-button menu-button--full${

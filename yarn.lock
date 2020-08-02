@@ -7222,10 +7222,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nifty-components@^1.0.0-beta-5:
-  version "1.0.0-beta-5"
-  resolved "https://registry.yarnpkg.com/nifty-components/-/nifty-components-1.0.0-beta-5.tgz#b184864016ae00c781a3345d7dd6091fd958f179"
-  integrity sha512-JrshCK9SP2N02JMXyiJjMZvuL06k8yugp0ysHIiXq86YNW2+Jmm7maxvX4p6Vy7PfYOUcRzeyZPziH6CkwaxeQ==
+nifty-components@^1.0.0-beta-7:
+  version "1.0.0-beta-7"
+  resolved "https://registry.yarnpkg.com/nifty-components/-/nifty-components-1.0.0-beta-7.tgz#80219900a4f69d0950ef99faf5da5b85984e262f"
+  integrity sha512-0/MxWPPpi8NT6KV9z1k5cy9dF3+1sQlr9FVSQ1kDlrJHsvyEqF4xd3TyqFEjr+g6Wrjqn3ZU4H17Pq8pMkHVYA==
 
 no-case@^3.0.3:
   version "3.0.3"

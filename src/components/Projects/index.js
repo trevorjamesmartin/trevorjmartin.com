@@ -65,6 +65,7 @@ const Projects = (props) => {
         backgroundColor={props.active_theme.background}
         textColor={props.active_theme.onBackground}
         titleColor={props.active_theme.onBackground}
+        style={{ opacity: "90%" }}
       />
     </div>
   );
