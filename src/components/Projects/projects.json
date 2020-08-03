@@ -1,12 +1,12 @@
 [
   {
-    "title": "GitHub Keepers",
-    "thumb": "/images/keepers.gif",
+    "title": "nifty-components",
+    "thumb": "/images/nifty.gif",
     "alt": "project screenshot",
-    "desc": "React, HTML, CSS",
-    "hosted": "https://app.trevorjmartin.now.sh/",
-    "source": "https://github.com/debauchery1st/React-Github-User-Card/tree/trevor-martin",
-    "tldr": "When information is fun to digest, do we spend more time absorbing it? Here is a list of people who write code... rendered as Keeper cards from the tabletop game of Fluxx."
+    "desc": "NPM, React",
+    "hosted": "https://www.npmjs.com/package/nifty-components",
+    "source": "https://github.com/debauchery1st/nifty-components",
+    "tldr": "A React component library. It houses some of the components that make up this portfolio, including this one. Have you tried clicking the cat at the top of this page?"
   },
   {
     "title": "Conway's Game Of Life",
@@ -18,13 +18,13 @@
     "tldr": "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves. It is Turing complete and can simulate a universal constructor or any other Turing machine. This rendition was written in vanilla ReactJS during a CS build week at Lambda School."
   },
   {
-    "title": "Chuck Norris",
-    "thumb": "/images/chuck.png",
+    "title": "GitHub Keepers",
+    "thumb": "/images/keepers.gif",
     "alt": "project screenshot",
-    "desc": "GNU/GNOME shell extension",
-    "hosted": "https://extensions.gnome.org/extension/1592/chuck-norris/",
-    "source": "https://github.com/debauchery1st/Chuck_Norris",
-    "tldr": "GNOME is a desktop environment for Unix-like operating systems. GNOME Shell is the defining technology of the GNOME 3 user experience; An experience that would restrain my propensity for switching desktop environments. The GNU/GNOME Shell is written in C and Javascript and can be extended to provide a more customized experience... This extension will fetch a Chuck Norris joke, on demand, from the Internet Chuck Norris Database."
+    "desc": "React, HTML, CSS",
+    "hosted": "https://app.trevorjmartin.now.sh/",
+    "source": "https://github.com/debauchery1st/React-Github-User-Card/tree/trevor-martin",
+    "tldr": "When information is fun to digest, do we spend more time absorbing it? Here is a list of people who write code... rendered as Keeper cards from the tabletop game of Fluxx."
   },
   {
     "title": "Replate (backend)",
@@ -34,6 +34,15 @@
     "hosted": "https://bw-replate-1.herokuapp.com/",
     "source": "https://github.com/bw-replate/backend",
     "tldr": "Replate was designed to facilitate the reduction of food-waste by connecting those who are in need of food with those who have more than enough to share. This RESTful API was conceived in a modular fashion, designed to be further extended when/where appropriate."
+  },
+  {
+    "title": "Chuck Norris",
+    "thumb": "/images/chuck.png",
+    "alt": "project screenshot",
+    "desc": "GNU/GNOME shell extension",
+    "hosted": "https://extensions.gnome.org/extension/1592/chuck-norris/",
+    "source": "https://github.com/debauchery1st/Chuck_Norris",
+    "tldr": "GNOME is a desktop environment for Unix-like operating systems. GNOME Shell is the defining technology of the GNOME 3 user experience; An experience that would restrain my propensity for switching desktop environments. The GNU/GNOME Shell is written in C and Javascript and can be extended to provide a more customized experience... This extension will fetch a Chuck Norris joke, on demand, from the Internet Chuck Norris Database."
   },
   {
     "title": "Tets",
