@@ -21,7 +21,7 @@ import { MenuLeft, MenuFull } from "./components/Menu";
 
 import useStateWithLocalStorage from "./hooks/useStateWithLocalStorage";
 
-import PalettePicker from "./components/palettePicker";
+import PalettePicker from "./components/PalettePicker";
 import ReadMe from "./components/ReadMe";
 
 import Projects from "./components/Projects";

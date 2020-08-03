@@ -10,6 +10,11 @@
     "origin": "https://colorhunt.co/palette/196113"
   },
   {
+    "id": 192213,
+    "colors": "[\"#184d47\",\"#96bb7c\",\"#d6efc7\",\"#eebb4d\"]",
+    "origin": "https://colorhunt.co/palette/192213"
+  },
+  {
     "id": 196152,
     "colors": "[\"#6f4a8e\",\"#221f3b\",\"#050505\",\"#ebebeb\"]",
     "origin": "https://colorhunt.co/palette/196152"
@@ -68,11 +73,6 @@
     "id": 191657,
     "colors": "[\"#383e56\",\"#f69e7b\",\"#eedad1\",\"#d4b5b0\"]",
     "origin": "https://colorhunt.co/palette/191657"
-  },
-  {
-    "id": 192213,
-    "colors": "[\"#184d47\",\"#96bb7c\",\"#d6efc7\",\"#eebb4d\"]",
-    "origin": "https://colorhunt.co/palette/192213"
   },
   {
     "id": 196244,

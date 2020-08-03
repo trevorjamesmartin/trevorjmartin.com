@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
-const PaletteCard = ({ colors, palette, activeTheme, handleChange }) => {
+const PaletteCard = ({ colors, palette, activeTheme, handleChange, id }) => {
   const [linkState, setLinkState] = useState({ palette: undefined });
   const { primary, primaryVariant, secondary, secondaryVariant } = colors;
   const styleSize = { width: "10vw", height: "10vw" };
   return (
     <div
+      id={id}
+      name={id}
       onMouseEnter={() => setLinkState({ palette })}
       onMouseLeave={() => setLinkState({ palette: undefined })}
       onClick={handleChange}
@@ -18,35 +20,35 @@ const PaletteCard = ({ colors, palette, activeTheme, handleChange }) => {
         border: `1px solid ${
           linkState.palette === palette ? colors.primaryVariant : colors.primary
         }`,
-        cursor: "pointer",
+        cursor: "pointer"
       }}
     >
       <div
         className="first-color"
         style={{
           backgroundColor: primary,
-          ...styleSize,
+          ...styleSize
         }}
       />
       <div
         className="second-color"
         style={{
           backgroundColor: primaryVariant,
-          ...styleSize,
+          ...styleSize
         }}
       />
       <div
         className="third-color"
         style={{
           backgroundColor: secondary,
-          ...styleSize,
+          ...styleSize
         }}
       />
       <div
         className="fourth-color"
         style={{
           backgroundColor: secondaryVariant,
-          ...styleSize,
+          ...styleSize
         }}
       />
     </div>
