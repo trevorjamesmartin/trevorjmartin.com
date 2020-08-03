@@ -336,6 +336,7 @@ export default function App(props) {
                     <Projects
                       text="Projects"
                       {...localTheme}
+                      matrixRain={matrixRain}
                       toggleMatrix={() => setMatrixRain(!matrixRain)}
                     />
                   </div>

@@ -6,7 +6,7 @@ import {
   faJs,
   faPython,
   faHtml5,
-  faLinux,
+  faLinux
 } from "@fortawesome/free-brands-svg-icons";
 import { faAddressCard, faPalette } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,7 +29,7 @@ export const MenuLeft = (props) => {
     position: "fixed",
     top: "4rem",
     left: "4rem",
-    cursor: "pointer",
+    cursor: "pointer"
   };
 
   return (
@@ -39,12 +39,21 @@ export const MenuLeft = (props) => {
           ...style,
           a: {
             backgroundColor,
-            color,
+            color
           },
-          backgroundColor,
+          backgroundColor
         }}
         className="menu menu--left"
       >
+        <NavLink
+          to="/theme"
+          style={{ color, position: "fixed", top: "4rem", left: "8.6rem" }}
+          activeStyle={{ color: active }}
+          exact
+        >
+          <FontAwesomeIcon icon={faPalette} alt="theme" />
+        </NavLink>
+
         <ToggleMode {...props} toggleStyle={toggleStyle} />
         <nav>
           <ul className="menu-list menu-list--left">
@@ -118,7 +127,7 @@ export const MenuFull = ({
   style,
   handleClick,
   theme_options: opt,
-  active_theme,
+  active_theme
 }) => {
   const theme = active_theme || starterTheme;
   const backgroundColor = theme.primaryVariant;
@@ -130,11 +139,28 @@ export const MenuFull = ({
       style={{
         ...style,
         backgroundColor,
-        color,
+        color
       }}
     >
       <nav>
         <ul className="menu-list menu-list--full">
+          <li>
+            <NavLink
+              to="/theme"
+              style={{
+                color,
+                position: "fixed",
+                top: "2.7rem",
+                left: "2.3rem"
+              }}
+              onClick={handleClick}
+              activeStyle={{ color: active }}
+              exact
+            >
+              <FontAwesomeIcon icon={faPalette} alt="theme" size="2x" />
+            </NavLink>
+          </li>
+
           <li className="menu-list-item menu-list-item--full">
             <NavLink
               to="/"

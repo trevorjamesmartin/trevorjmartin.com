@@ -65,7 +65,7 @@ const Projects = (props) => {
         backgroundColor={props.active_theme.background}
         textColor={props.active_theme.onBackground}
         titleColor={props.active_theme.onBackground}
-        style={{ opacity: "90%" }}
+        style={{ opacity: props.matrixRain ? "90%" : "100%" }}
       />
     </div>
   );

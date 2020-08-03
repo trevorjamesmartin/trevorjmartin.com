@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PaletteCard from "./paletteCard";
+import { faPalette, faCat } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PalettePicker = (props) => {
   const { handleChangeTheme, context_id, palette } = props;
@@ -32,7 +34,16 @@ const PalettePicker = (props) => {
 
   return (
     <div>
-      <h1>PalettePicker</h1>
+      <h1>
+        <FontAwesomeIcon
+          icon={faPalette}
+          alt="Theme"
+          onClick={() => props.toggleMatrix()}
+        />
+      </h1>
+      <FontAwesomeIcon icon={faCat} onClick={() => props.toggleMatrix()} />
+      <br />
+      Theme
       {cards}
     </div>
   );
