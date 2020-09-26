@@ -54,7 +54,7 @@ export default function About(props) {
           </p>
         </a>
         <a
-          href="https://github.com/debauchery1st"
+          href="https://github.com/trevorjamesmartin"
           alt="Github Profile"
           target="_blank"
           rel="noopener noreferrer"
